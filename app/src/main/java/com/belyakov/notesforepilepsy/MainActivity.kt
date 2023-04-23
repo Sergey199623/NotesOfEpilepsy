@@ -9,7 +9,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -82,54 +81,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-//@SuppressLint("UnrememberedGetBackStackEntry")
-//@Composable
-//fun AuthNavGraph(
-//    navController: NavHostController
-//) {
-////    val authViewModel = AuthViewModel()
-//    val mainViewModel = MainViewModel()
-//
-//    NavHost(
-//        navController = navController,
-//        startDestination = NavigateTo.MAIN_SCREEN.value
-//    ) {
-//        composable(route = NavigateTo.LOGIN_SCREEN.value) {
-////            LoginScreen(
-////                authViewModel,
-////                navController
-////            )
-//        }
-//        composable(route = NavigateTo.CODE_SCREEN.value) {
-//            val currentViewModel = navController.getBackStackEntry(NavigateTo.LOGIN_SCREEN.value)
-////            CodeScreen(
-////                viewModel(currentViewModel),
-////                navController
-////            )
-//        }
-//        composable(route = NavigateTo.REGISTRATION_SCREEN.value) {
-//            val currentViewModel = navController.getBackStackEntry(NavigateTo.CODE_SCREEN.value)
-////            RegistrationScreen(
-////                viewModel(currentViewModel),
-////                navController
-////            )
-//        }
-//        composable(route = NavigateTo.MAIN_SCREEN.value) {
-//            MainScreen(
-//                navController = navController,
-//                onAddNotes = { navController.navigate(NavigateTo.ADD_NOTES_SCREEN.value) },
-//                mainViewModel = mainViewModel
-//            )
-//        }
-//        composable(route = NavigateTo.ADD_NOTES_SCREEN.value) {
-//            val currentViewModel = navController.getBackStackEntry(NavigateTo.MAIN_SCREEN.value)
-//            AddNotesScreen(
-//                navController = navController,
-//                mainViewModel = viewModel(currentViewModel),
-//                onNotesSaved = { navController.navigate( NavigateTo.MAIN_SCREEN.value) },
-//                onBackClicked = { navController.navigateUp() }
-//            )
-//        }
-//    }
-//}
