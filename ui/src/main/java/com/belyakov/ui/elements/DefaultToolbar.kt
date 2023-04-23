@@ -19,29 +19,48 @@ import com.belyakov.notesforepilepsy.R
 import com.belyakov.ui.ext.noRippleClickable
 
 @Composable
-fun MainToolbar(
+fun DefaultToolbar(
     onOpenProfile: () -> Unit = { },
-    onSosClicked: () -> Unit = { }
+    onSosClicked: () -> Unit = { },
+    isMainScreen: Boolean,
+    isShowBackIconNeeded: Boolean
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Image(
-            painter = painterResource(R.drawable.ic_profile),
-            modifier = Modifier
-                .weight(1f)
-                .clip(CircleShape)
-                .noRippleClickable { onOpenProfile() }
-                .padding(16.dp, 16.dp),
-            contentDescription = null
-        )
+        if (isMainScreen) {
+            Image(
+                painter = painterResource(R.drawable.ic_profile),
+                modifier = Modifier
+                    .weight(1f)
+                    .clip(CircleShape)
+                    .noRippleClickable { onOpenProfile() }
+                    .padding(16.dp, 16.dp),
+                contentDescription = null
+            )
+        } else {
+            if (isShowBackIconNeeded) {
+                Image(
+                    painter = painterResource(R.drawable.ic_arrow_back),
+                    modifier = Modifier
+                        .weight(1f)
+                        .clip(CircleShape)
+                        .noRippleClickable { onOpenProfile() }
+                        .padding(16.dp, 16.dp),
+                    contentDescription = null
+                )
+            } else {
+                Spacer(modifier = Modifier.size(32.dp))
+            }
+        }
         Text(
             text = stringResource(id = R.string.main_screen_title),
             modifier = Modifier
                 .weight(1f)
                 .align(Alignment.CenterVertically),
-            style = TextStyle (
+            style = TextStyle(
                 textAlign = TextAlign.Center,
                 color = Color.White,
                 fontSize = 16.sp,

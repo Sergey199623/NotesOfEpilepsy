@@ -21,7 +21,7 @@ import com.belyakov.ui.elements.NotesItem
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.belyakov.notesforepilepsy.presentation.viewModel.MainViewModel
-import com.belyakov.ui.elements.MainToolbar
+import com.belyakov.ui.elements.DefaultToolbar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -49,9 +49,11 @@ fun MainScreen(
                 .background(Color(android.graphics.Color.parseColor("#FF00BCD4")))
                 .align(Alignment.TopCenter),
         ) {
-            MainToolbar(
+            DefaultToolbar(
                 onOpenProfile = onOpenProfile,
-                onSosClicked = onSosClicked
+                onSosClicked = onSosClicked,
+                isMainScreen = true,
+                isShowBackIconNeeded = false
             )
         }
 

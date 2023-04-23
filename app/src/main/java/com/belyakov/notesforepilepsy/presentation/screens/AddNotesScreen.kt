@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.belyakov.notesforepilepsy.presentation.viewModel.MainViewModel
-import com.belyakov.ui.elements.MainToolbar
+import com.belyakov.ui.elements.DefaultToolbar
 
 @Composable
 fun AddNotesScreen(
@@ -47,7 +47,10 @@ fun AddNotesScreen(
                 .background(Color(android.graphics.Color.parseColor("#FF00BCD4")))
                 .align(Alignment.TopCenter),
         ) {
-            MainToolbar()
+            DefaultToolbar(
+                isMainScreen = false,
+                isShowBackIconNeeded = true
+            )
         }
 
         Column(
