@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_color">#FFF5F5F5</color>
+    <color name="primary_accent_color">#FFFFA500</color>
+    <color name="primary_dark_app_color">#FFBB86FC</color>
+    <color name="primary_light_app_color">#FFBB86FC</color>
+    <color name="primary_text_color">#FF757575</color>
+    <string name="auth_back_to_registration">Вернуться к авторизации</string>
+    <string name="auth_error_registration">Подтверждение регистрации аккаунта невозможно</string>
+    <string name="auth_input_code">Введите код подтверждения</string>
+    <string name="auth_login_btn_next">Далее</string>
+    <string name="auth_login_hint">Номер телефона или email</string>
+    <string name="auth_login_subtitle">Вам необходимо войти для того, чтобы использовать ваш созданный аккаунт, или же зарегистрируйте его</string>
+    <string name="auth_login_title">Введите номер телефона или email</string>
+    <string name="auth_privacy_policies">Нажимая «Далее», я даю согласие на обработку персональных данных и принимаю условия пользовательского соглашения</string>
+    <string name="auth_registration_user_name">Имя</string>
+    <string name="auth_repeat_send_code">Получить код ещё раз</string>
+    <string name="auth_subtitle_registration">Введите ваше имя</string>
+    <string name="auth_title_registration">Регистрация</string>
+    <style name="Theme.NotesForEpilepsy" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/primary_accent_color</item>
+    </style>
+</resources>

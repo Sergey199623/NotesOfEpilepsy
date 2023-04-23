@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.belyakov.notesforepilepsy.ui-merged_res-37:/font_roboto_base.ttf.flat",
+        "source": "com.belyakov.notesforepilepsy.ui-main-39:/font/roboto_base.ttf"
+    },
+    {
+        "merged": "com.belyakov.notesforepilepsy.ui-merged_res-37:/drawable_ic_arrow_forward.xml.flat",
+        "source": "com.belyakov.notesforepilepsy.ui-main-39:/drawable/ic_arrow_forward.xml"
+    },
+    {
+        "merged": "com.belyakov.notesforepilepsy.ui-merged_res-37:/drawable_ic_arrow_back.xml.flat",
+        "source": "com.belyakov.notesforepilepsy.ui-main-39:/drawable/ic_arrow_back.xml"
+    },
+    {
+        "merged": "com.belyakov.notesforepilepsy.ui-merged_res-37:/drawable_ic_cross_close.xml.flat",
+        "source": "com.belyakov.notesforepilepsy.ui-main-39:/drawable/ic_cross_close.xml"
+    }
+]

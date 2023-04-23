@@ -1,0 +1,28 @@
+ext {
+
+    buildToolsAllVersion = "30.0.3"
+
+    sdkMinVersion = 24
+    sdkTargetVersion = 31
+    sdkCompileVersion = 33
+
+    roomVersion = "2.5.0"
+    glideVersion = "4.12.0"
+    retrofitVersion = "2.9.0"
+    composeVersion = "1.2.0"
+
+    def koinCoreVersion = "3.2.2"
+    koinDependencies = [
+            // https://github.com/InsertKoinIO/koin
+            core: "io.insert-koin:koin-android:$koinCoreVersion",
+    ]
+
+    composeDependencies = [
+            ui: "androidx.compose.ui:ui:1.3.1",
+            uiPreview: "androidx.compose.ui:ui-tooling-preview:1.3.1",
+            foundationLayout: "androidx.compose.foundation:foundation-layout:1.3.1",
+            material: "androidx.compose.material:material:1.3.1",
+            activity: "androidx.activity:activity-compose:1.3.1",
+            navigation: "androidx.navigation:navigation-compose:2.5.3",
+    ]
+}

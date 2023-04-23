@@ -1,0 +1,14 @@
+<resources>
+    <string name="auth_login_title">Введите номер телефона или email</string>
+    <string name="auth_login_subtitle">Вам необходимо войти для того, чтобы использовать ваш созданный аккаунт, или же зарегистрируйте его</string>
+    <string name="auth_login_hint">Номер телефона или email</string>
+    <string name="auth_login_btn_next">Далее</string>
+    <string name="auth_title_registration">Регистрация</string>
+    <string name="auth_subtitle_registration">Введите ваше имя</string>
+    <string name="auth_repeat_send_code">Получить код ещё раз</string>
+    <string name="auth_privacy_policies">Нажимая «Далее», я даю согласие на обработку персональных данных и принимаю условия пользовательского соглашения</string>
+    <string name="auth_registration_user_name">Имя</string>
+    <string name="auth_input_code">Введите код подтверждения</string>
+    <string name="auth_back_to_registration">Вернуться к авторизации</string>
+    <string name="auth_error_registration">Подтверждение регистрации аккаунта невозможно</string>
+</resources>

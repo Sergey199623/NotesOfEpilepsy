@@ -1,0 +1,24 @@
+R_DEF: Internal format may change without notice
+local
+color background_color
+color primary_accent_color
+color primary_dark_app_color
+color primary_light_app_color
+color primary_text_color
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+mipmap ic_launcher
+mipmap ic_launcher_round
+string auth_back_to_registration
+string auth_error_registration
+string auth_input_code
+string auth_login_btn_next
+string auth_login_hint
+string auth_login_subtitle
+string auth_login_title
+string auth_privacy_policies
+string auth_registration_user_name
+string auth_repeat_send_code
+string auth_subtitle_registration
+string auth_title_registration
+style Theme.NotesForEpilepsy

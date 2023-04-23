@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Записки эпилептика</string>
+    <string name="main_screen_empty_list">Записи отсутствуют</string>
+</resources>
