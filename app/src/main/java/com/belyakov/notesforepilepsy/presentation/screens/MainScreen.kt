@@ -1,10 +1,7 @@
 package com.belyakov.notesforepilepsy.presentation.screens
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -20,11 +17,10 @@ import androidx.navigation.NavHostController
 import com.belyakov.notesforepilepsy.R
 import com.belyakov.notesforepilepsy.data.Notes
 import com.belyakov.ui.elements.NotesItem
-import androidx.compose.foundation.layout.Row
-import androidx.compose.ui.Alignment.Companion.CenterVertically
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.belyakov.notesforepilepsy.presentation.viewModel.MainViewModel
+import com.belyakov.ui.elements.MainToolbar
 
 @Composable
 fun MainScreen(
@@ -44,11 +40,16 @@ fun MainScreen(
     )
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
+        Box(
+            modifier = Modifier.background(Color(android.graphics.Color.parseColor("#FF00BCD4"))),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            MainToolbar()
+        }
 
-        // Если пустой список
+//      Если пустой список
         if (notesList.isEmpty()) {
             Box(
                 modifier = Modifier.fillMaxSize(),
@@ -62,7 +63,7 @@ fun MainScreen(
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-//                state = itemsListState
+////                state = itemsListState
             ) {
                 items(notesList) { note ->
                     NotesItem(

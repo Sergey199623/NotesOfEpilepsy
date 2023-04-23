@@ -13,22 +13,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.belyakov.ui.theme.CardBackground
 
-//@Composable
-//fun CardBox(
-//    modifier: Modifier = Modifier,
-//    contentPadding: PaddingValues = PaddingValues(0.dp),
-//    contentAlignment: Alignment = Alignment.TopStart,
-//    background: Color = CardBackground,
-//    roundedCornerShape: RoundedCornerShape = RoundedCornerShape(12.dp),
-//    content: @Composable () -> Unit,
-//) {
-//    Box(
-//        modifier = modifier
-//            .clip(roundedCornerShape)
-//            .background(background)
-//            .padding(contentPadding),
-//        contentAlignment = contentAlignment
-//    ) {
-//        content()
-//    }
-//}
+@Composable
+fun CardBox(
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
+    contentAlignment: Alignment = Alignment.TopStart,
+    background: Color = CardBackground,
+    roundedCornerShape: RoundedCornerShape = RoundedCornerShape(12.dp),
+    content: @Composable () -> Unit,
+) {
+    Box(
+        modifier = modifier
+            .clip(roundedCornerShape)
+            .background(background)
+            .padding(contentPadding),
+        contentAlignment = contentAlignment
+    ) {
+        content()
+    }
+}

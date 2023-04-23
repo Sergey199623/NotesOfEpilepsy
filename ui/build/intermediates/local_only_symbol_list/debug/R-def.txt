@@ -9,3 +9,4 @@ drawable ic_arrow_back
 drawable ic_arrow_forward
 drawable ic_cross_close
 font roboto_base
+string main_screen_title

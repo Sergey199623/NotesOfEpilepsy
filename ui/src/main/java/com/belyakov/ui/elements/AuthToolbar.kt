@@ -12,43 +12,33 @@ import androidx.compose.ui.unit.dp
 import com.belyakov.ui.ext.noRippleClickable
 import com.belyakov.notesforepilepsy.R
 
-//@Composable
-//fun AuthToolbar(
-//    onBack: (() -> Unit)? = null,
-//    onClose: () -> Unit = {},
-//) {
-//    Row(
-//        modifier = Modifier.fillMaxWidth(),
-//        horizontalArrangement = Arrangement.SpaceBetween,
-//        verticalAlignment = Alignment.CenterVertically
-//    ) {
-//        if (onBack != null) {
-//            Image(
-//                modifier = Modifier
-//                    .clip(CircleShape)
-//                    .noRippleClickable { onBack() },
-//                painter = painterResource(R.drawable.ic_arrow_back),
-//                contentDescription = null
-//            )
-//        } else {
-//            Spacer(modifier = Modifier.size(24.dp))
-//        }
-//        // todo пока закомментил т.к. нет идей насчет лого
-////        Image(
-////            modifier = Modifier
-////                .shadow(elevation = 30.dp, spotColor = Orange, shape = SquireShape)
-////                .background(Orange)
-////                .size(56.dp)
-////                .padding(14.dp),
-////            painter = painterResource(R.drawable.),
-////            contentDescription = null
-////        )
-//        Image(
-//            modifier = Modifier
-//                .clip(CircleShape)
-//                .noRippleClickable { onClose() },
-//            painter = painterResource(R.drawable.ic_cross_close),
-//            contentDescription = null
-//        )
-//    }
-//}
+@Composable
+fun AuthToolbar(
+    onBack: (() -> Unit)? = null,
+    onClose: () -> Unit = {},
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        if (onBack != null) {
+            Image(
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .noRippleClickable { onBack() },
+                painter = painterResource(R.drawable.ic_arrow_back),
+                contentDescription = null
+            )
+        } else {
+            Spacer(modifier = Modifier.size(24.dp))
+        }
+        Image(
+            modifier = Modifier
+                .clip(CircleShape)
+                .noRippleClickable { onClose() },
+            painter = painterResource(R.drawable.ic_cross_close),
+            contentDescription = null
+        )
+    }
+}

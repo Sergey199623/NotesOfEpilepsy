@@ -5,4 +5,5 @@
     <color name="primary_dark_app_color">#FFBB86FC</color>
     <color name="primary_light_app_color">#FFBB86FC</color>
     <color name="primary_text_color">#FF757575</color>
+    <string name="main_screen_title">Главный экран</string>
 </resources>
