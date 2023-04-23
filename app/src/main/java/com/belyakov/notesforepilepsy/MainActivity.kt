@@ -15,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.belyakov.notesforepilepsy.presentation.screens.AddNotesScreen
 import com.belyakov.notesforepilepsy.presentation.screens.MainScreen
+import com.belyakov.notesforepilepsy.presentation.screens.ProfileScreen
 import com.belyakov.notesforepilepsy.presentation.viewModel.MainViewModel
 import com.belyakov.notesforepilepsy.ui.theme.NotesForEpilepsyTheme
 
@@ -30,7 +31,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-//                    AuthNavGraph(navController = navController)
                     val mainViewModel = MainViewModel()
 
                     NavHost(
@@ -60,8 +60,28 @@ class MainActivity : ComponentActivity() {
                         composable(route = NavigateTo.MAIN_SCREEN.value) {
                             MainScreen(
                                 navController = navController,
+                                onOpenProfile = { navController.navigate(NavigateTo.PROFILE_SCREEN.value) },
+                                onSosClicked = {
+                                    // todo реализовать быстрый вызов неотложки
+                                },
                                 onAddNotes = { navController.navigate(NavigateTo.ADD_NOTES_SCREEN.value) },
                                 mainViewModel = mainViewModel
+                            )
+                        }
+                        composable(route = NavigateTo.PROFILE_SCREEN.value) { backStackEntry ->
+                            val currentViewModel = remember(backStackEntry) {
+                                navController.getBackStackEntry(NavigateTo.MAIN_SCREEN.value)
+                            }
+                            ProfileScreen(
+                                navController = navController,
+                                mainViewModel = viewModel(currentViewModel),
+                                onDataSaved = {
+                                    // todo реализовать сохранение данных пользователя на удаленной БД
+                                },
+                                onBackClicked = { navController.navigateUp() },
+                                onSosClicked = {
+                                    // todo реализовать быстрый вызов неотложки
+                                }
                             )
                         }
                         composable(route = NavigateTo.ADD_NOTES_SCREEN.value) { backStackEntry ->
@@ -71,7 +91,7 @@ class MainActivity : ComponentActivity() {
                             AddNotesScreen(
                                 navController = navController,
                                 mainViewModel = viewModel(currentViewModel),
-                                onNotesSaved = { navController.navigate( NavigateTo.MAIN_SCREEN.value) },
+                                onNotesSaved = { navController.navigate(NavigateTo.MAIN_SCREEN.value) },
                                 onBackClicked = { navController.navigateUp() }
                             )
                         }

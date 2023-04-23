@@ -16,10 +16,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.belyakov.notesforepilepsy.R
-import com.belyakov.notesforepilepsy.data.Notes
+import com.belyakov.notesforepilepsy.data.Events
 import com.belyakov.ui.elements.NotesItem
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.belyakov.notesforepilepsy.presentation.viewModel.MainViewModel
 import com.belyakov.ui.elements.MainToolbar
@@ -31,20 +30,15 @@ import androidx.compose.ui.res.vectorResource
 @Composable
 fun MainScreen(
     navController: NavHostController,
+    onOpenProfile: () -> Unit,
+    onSosClicked: () -> Unit,
     onAddNotes: () -> Unit,
     mainViewModel: MainViewModel = viewModel(),
 ) {
 
-    val notesList = remember {
-        mutableStateListOf<Notes>()
+    val eventsList = remember {
+        mutableStateListOf<Events>()
     }
-    notesList.addAll(
-        listOf(
-            Notes("Title 1", "Description 1", "2022-05-01"),
-            Notes("Title 2", "Description 2", "2022-05-02"),
-            Notes("Title 3", "Description 3", "2022-05-03")
-        )
-    )
     val itemsListState = rememberLazyListState()
 
     Box(
@@ -55,7 +49,10 @@ fun MainScreen(
                 .background(Color(android.graphics.Color.parseColor("#FF00BCD4")))
                 .align(Alignment.TopCenter),
         ) {
-            MainToolbar()
+            MainToolbar(
+                onOpenProfile = onOpenProfile,
+                onSosClicked = onSosClicked
+            )
         }
 
         Box(
@@ -64,7 +61,7 @@ fun MainScreen(
                 .align(Alignment.Center)
         ) {
             // Если пустой список
-            if (notesList.isEmpty()) {
+            if (eventsList.isEmpty()) {
                 Box(
                     modifier = Modifier.align(Alignment.Center)
                 ) {
@@ -72,11 +69,10 @@ fun MainScreen(
                 }
             } else {
                 LazyColumn(
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.align(Alignment.CenterStart),
                     state = itemsListState
                 ) {
-                    items(notesList) { note ->
+                    items(eventsList) { note ->
                         NotesItem(
                             title = note.title,
                             description = note.description,
@@ -93,12 +89,12 @@ fun MainScreen(
                 .align(Alignment.BottomCenter)
         ) {
             IconButton(
-                onClick = { navController.navigate("add_notes_screen")}
+                onClick = { onAddNotes() }
             ) {
                 Image(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_add_notes),
                     contentDescription = null,
-                    modifier = Modifier.size(64.dp) // Установка размера иконки
+                    modifier = Modifier.size(64.dp)
                 )
             }
         }
