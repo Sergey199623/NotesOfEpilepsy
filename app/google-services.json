@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "59432153290",
+    "project_id": "notesofepilepsy",
+    "storage_bucket": "notesofepilepsy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59432153290:android:117647f8d94b23293bc433",
+        "android_client_info": {
+          "package_name": "com.belyakov.notesforepilepsy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59432153290-a6j4dg0n0dr0aroubob2nnhl59bfddba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFrV4fPXkVUnAZOehGxFAef7Us346L2xI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59432153290-a6j4dg0n0dr0aroubob2nnhl59bfddba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
