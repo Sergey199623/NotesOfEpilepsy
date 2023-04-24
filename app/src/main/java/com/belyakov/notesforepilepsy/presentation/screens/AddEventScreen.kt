@@ -18,11 +18,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.belyakov.notesforepilepsy.presentation.viewModel.MainViewModel
 import com.belyakov.ui.elements.DefaultToolbar
-import com.belyakov.notesforepilepsy.R
 import com.belyakov.notesforepilepsy.utils.MeasureDefaultToolbarHeight
 
 @Composable
-fun AddNotesScreen(
+fun AddEventScreen(
     navController: NavHostController,
     mainViewModel: MainViewModel = viewModel(),
     onNotesSaved: () -> Unit,

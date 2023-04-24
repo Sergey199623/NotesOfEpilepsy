@@ -9,20 +9,26 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.belyakov.notesforepilepsy.presentation.screens.AddNotesScreen
+import com.belyakov.notesforepilepsy.presentation.screens.AddEventScreen
 import com.belyakov.notesforepilepsy.presentation.screens.MainScreen
 import com.belyakov.notesforepilepsy.presentation.screens.ProfileScreen
 import com.belyakov.notesforepilepsy.presentation.viewModel.MainViewModel
 import com.belyakov.notesforepilepsy.ui.theme.NotesForEpilepsyTheme
+import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
+
     @SuppressLint("UnrememberedGetBackStackEntry")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        FirebaseApp.initializeApp(applicationContext)
+
         setContent {
             val navController = rememberNavController()
             NotesForEpilepsyTheme {
@@ -88,7 +94,7 @@ class MainActivity : ComponentActivity() {
                             val currentViewModel = remember(backStackEntry) {
                                 navController.getBackStackEntry(NavigateTo.MAIN_SCREEN.value)
                             }
-                            AddNotesScreen(
+                            AddEventScreen(
                                 navController = navController,
                                 mainViewModel = viewModel(currentViewModel),
                                 onNotesSaved = { navController.navigate(NavigateTo.MAIN_SCREEN.value) },

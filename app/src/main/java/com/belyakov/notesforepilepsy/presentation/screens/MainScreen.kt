@@ -1,5 +1,6 @@
 package com.belyakov.notesforepilepsy.presentation.screens
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -27,9 +28,16 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.layout
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.IntOffset
 import com.belyakov.notesforepilepsy.utils.MeasureDefaultToolbarHeight
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 @Composable
 fun MainScreen(
@@ -45,10 +53,27 @@ fun MainScreen(
     val eventsList = remember {
         mutableStateListOf<Events>()
     }
-    eventsList.add(
-        Events(title = "Test 1", description = "Test 1", dateOfCreate = "Today")
-    )
+//    eventsList.add(
+//        Events(title = "Test 1", description = "Test 1", dateOfCreate = "Today")
+//    )
     val itemsListState = rememberLazyListState()
+
+    val database = Firebase.database
+    val myRef = database.getReference("notes")
+    myRef.addValueEventListener(object : ValueEventListener {
+
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            for (noteSnapshot in dataSnapshot.children) {
+                val note = noteSnapshot.getValue(Events::class.java)
+                note?.let { eventsList.add(it) }
+            }
+            // здесь можно обновить список заметок в UI
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            Log.w("Main Screen", "Failed to read value.", error.toException())
+        }
+    })
 
     Box(
         modifier = Modifier.fillMaxSize(),

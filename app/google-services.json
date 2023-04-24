@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "59432153290",
-    "project_id": "notesofepilepsy",
-    "storage_bucket": "notesofepilepsy.appspot.com"
+    "project_number": "562567300756",
+    "project_id": "notesforepilepsy",
+    "storage_bucket": "notesforepilepsy.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:59432153290:android:117647f8d94b23293bc433",
+        "mobilesdk_app_id": "1:562567300756:android:94d7eef2f43fe90eb7d681",
         "android_client_info": {
           "package_name": "com.belyakov.notesforepilepsy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "59432153290-a6j4dg0n0dr0aroubob2nnhl59bfddba.apps.googleusercontent.com",
+          "client_id": "562567300756-h2366imi5ptc1sbmd56674j612ss9upn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBFrV4fPXkVUnAZOehGxFAef7Us346L2xI"
+          "current_key": "AIzaSyDczO577Qy0cJB_C3MjI0CfHOC-UQu6qZE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "59432153290-a6j4dg0n0dr0aroubob2nnhl59bfddba.apps.googleusercontent.com",
+              "client_id": "562567300756-h2366imi5ptc1sbmd56674j612ss9upn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

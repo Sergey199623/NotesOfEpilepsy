@@ -9,3 +9,5 @@ data class Events(
     val description: String,
     val dateOfCreate: String,
 ) : Parcelable
+
+//https://notesofepilepsy-default-rtdb.europe-west1.firebasedatabase.app/
