@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.sp
 import com.belyakov.notesforepilepsy.R
 
 @Composable
-fun NotesItem(
+fun EventItem(
     title: String,
     description: String,
     createdAt: String) {

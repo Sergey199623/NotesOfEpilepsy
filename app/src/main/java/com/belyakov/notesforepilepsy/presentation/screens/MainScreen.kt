@@ -17,15 +17,19 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.belyakov.notesforepilepsy.R
 import com.belyakov.notesforepilepsy.data.Events
-import com.belyakov.ui.elements.NotesItem
+import com.belyakov.ui.elements.EventItem
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.belyakov.notesforepilepsy.presentation.viewModel.MainViewModel
 import com.belyakov.ui.elements.DefaultToolbar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.IntOffset
+import com.belyakov.notesforepilepsy.utils.MeasureDefaultToolbarHeight
 
 @Composable
 fun MainScreen(
@@ -36,14 +40,20 @@ fun MainScreen(
     mainViewModel: MainViewModel = viewModel(),
 ) {
 
+    val toolbarHeight = remember { mutableStateOf(0) }
+
     val eventsList = remember {
         mutableStateListOf<Events>()
     }
+    eventsList.add(
+        Events(title = "Test 1", description = "Test 1", dateOfCreate = "Today")
+    )
     val itemsListState = rememberLazyListState()
 
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
+        MeasureDefaultToolbarHeight { toolbarHeight.value = it }
         Row(
             modifier = Modifier
                 .background(Color(android.graphics.Color.parseColor("#FF00BCD4")))
@@ -52,6 +62,7 @@ fun MainScreen(
             DefaultToolbar(
                 onOpenProfile = onOpenProfile,
                 onSosClicked = onSosClicked,
+//                title = R.string.main_screen_title,
                 isMainScreen = true,
                 isShowBackIconNeeded = false
             )
@@ -60,7 +71,14 @@ fun MainScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .align(Alignment.Center)
+                .align(Alignment.TopCenter)
+                .layout { measurable, constraints ->
+                    val placeable = measurable.measure(constraints)
+
+                    layout(placeable.width, placeable.height) {
+                        placeable.placeRelative(IntOffset(0, toolbarHeight.value))
+                    }
+                }
         ) {
             // Если пустой список
             if (eventsList.isEmpty()) {
@@ -74,11 +92,11 @@ fun MainScreen(
                     modifier = Modifier.align(Alignment.CenterStart),
                     state = itemsListState
                 ) {
-                    items(eventsList) { note ->
-                        NotesItem(
-                            title = note.title,
-                            description = note.description,
-                            createdAt = note.dateOfCreate
+                    items(eventsList) { event ->
+                        EventItem(
+                            title = event.title,
+                            description = event.description,
+                            createdAt = event.dateOfCreate
                         )
                     }
                 }

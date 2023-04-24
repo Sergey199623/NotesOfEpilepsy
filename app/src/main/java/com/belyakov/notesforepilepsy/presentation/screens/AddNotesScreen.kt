@@ -11,11 +11,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layout
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.belyakov.notesforepilepsy.presentation.viewModel.MainViewModel
 import com.belyakov.ui.elements.DefaultToolbar
+import com.belyakov.notesforepilepsy.R
+import com.belyakov.notesforepilepsy.utils.MeasureDefaultToolbarHeight
 
 @Composable
 fun AddNotesScreen(
@@ -24,12 +28,12 @@ fun AddNotesScreen(
     onNotesSaved: () -> Unit,
     onBackClicked: () -> Unit
 ) {
-// создаем mutableState переменные для хранения значений полей ввода
     val titleState = remember { mutableStateOf("") }
     val descriptionState = remember { mutableStateOf("") }
     val dateState = remember { mutableStateOf("") }
+    val toolbarHeight = remember { mutableStateOf(0) }
 
-    // функция для сохранения данных в mainViewModel и перехода на предыдущий экран
+        // функция для сохранения данных в mainViewModel и перехода на предыдущий экран
     fun onSaveClicked() {
         mainViewModel.addNotes(
             titleState.value,
@@ -42,6 +46,7 @@ fun AddNotesScreen(
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
+        MeasureDefaultToolbarHeight { toolbarHeight.value = it }
         Row(
             modifier = Modifier
                 .background(Color(android.graphics.Color.parseColor("#FF00BCD4")))
@@ -54,7 +59,15 @@ fun AddNotesScreen(
         }
 
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier
+                .padding(top = 16.dp)
+                .layout { measurable, constraints ->
+                    val placeable = measurable.measure(constraints)
+
+                    layout(placeable.width, placeable.height) {
+                        placeable.placeRelative(IntOffset(0, toolbarHeight.value))
+                    }
+                }
         ) {
             // поле для ввода названия события
             TextField(

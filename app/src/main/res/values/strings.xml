@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Записки эпилептика</string>
     <string name="main_screen_empty_list">Записи отсутствуют</string>
+    <string name="add_notes_screen_title">Создание события</string>
+    <string name="main_screen_title">Главный экран</string>
 </resources>

@@ -22,6 +22,7 @@ import com.belyakov.ui.ext.noRippleClickable
 fun DefaultToolbar(
     onOpenProfile: () -> Unit = { },
     onSosClicked: () -> Unit = { },
+//    title: Int,
     isMainScreen: Boolean,
     isShowBackIconNeeded: Boolean
 ) {
