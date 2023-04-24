@@ -3,4 +3,5 @@
     <string name="main_screen_empty_list">Записи отсутствуют</string>
     <string name="add_notes_screen_title">Создание события</string>
     <string name="main_screen_title">Главный экран</string>
+    <string name="firebase_database_url">https://notesforepilepsy-default-rtdb.europe-west1.firebasedatabase.app/</string>
 </resources>

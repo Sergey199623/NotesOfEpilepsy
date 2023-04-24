@@ -13,8 +13,6 @@ class App : MultiDexApplication(), KoinComponent {
     override fun onCreate() {
         super.onCreate()
 
-//        FirebaseApp.initializeApp(applicationContext)
-
         startDIifNeed(this)
     }
 
@@ -28,9 +26,9 @@ class App : MultiDexApplication(), KoinComponent {
                 modules(
                     listOf(
                         MainModules.create(),
-//                        module {
-//                            FirebaseApp.initializeApp(context)
-//                        }
+                        module {
+                            FirebaseApp.initializeApp(context)
+                        }
                     )
                 )
             }

@@ -21,7 +21,6 @@ import com.belyakov.notesforepilepsy.presentation.viewModel.MainViewModel
 
 @Composable
 fun ProfileScreen(
-    navController: NavHostController,
     mainViewModel: MainViewModel = viewModel(),
     onDataSaved: () -> Unit,
     onBackClicked: () -> Unit,

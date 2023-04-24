@@ -22,6 +22,7 @@ import com.belyakov.ui.ext.noRippleClickable
 fun DefaultToolbar(
     onOpenProfile: () -> Unit = { },
     onSosClicked: () -> Unit = { },
+    onBackClosed: () -> Unit = { },
 //    title: Int,
     isMainScreen: Boolean,
     isShowBackIconNeeded: Boolean
@@ -44,11 +45,11 @@ fun DefaultToolbar(
         } else {
             if (isShowBackIconNeeded) {
                 Image(
-                    painter = painterResource(R.drawable.ic_arrow_back),
+                    painter = painterResource(R.drawable.ic_back),
                     modifier = Modifier
                         .weight(1f)
                         .clip(CircleShape)
-                        .noRippleClickable { onOpenProfile() }
+                        .noRippleClickable { onBackClosed() }
                         .padding(16.dp, 16.dp),
                     contentDescription = null
                 )

@@ -14,7 +14,9 @@ import com.belyakov.notesforepilepsy.R
 fun EventItem(
     title: String,
     description: String,
-    createdAt: String) {
+    createdAt: String,
+    key: String // не отрисовываем
+) {
     Column(
         modifier = Modifier.padding(16.dp)
     ) {

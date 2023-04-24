@@ -22,7 +22,6 @@ import com.belyakov.notesforepilepsy.utils.MeasureDefaultToolbarHeight
 
 @Composable
 fun AddEventScreen(
-    navController: NavHostController,
     mainViewModel: MainViewModel = viewModel(),
     onNotesSaved: () -> Unit,
     onBackClicked: () -> Unit
@@ -52,6 +51,7 @@ fun AddEventScreen(
                 .align(Alignment.TopCenter),
         ) {
             DefaultToolbar(
+                onBackClosed = onBackClicked,
                 isMainScreen = false,
                 isShowBackIconNeeded = true
             )
