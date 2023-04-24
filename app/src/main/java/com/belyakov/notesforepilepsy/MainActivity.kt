@@ -122,6 +122,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CALL_PHONE_PERMISSION) {
@@ -130,7 +131,7 @@ class MainActivity : ComponentActivity() {
                 callEmergency()
             } else {
                 // Разрешение на звонок не предоставлено, выводим сообщение об ошибке
-                Toast.makeText(this, "Разрешение на звонок не предоставлено", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, this.getString(R.string.toast_call_permission), Toast.LENGTH_SHORT).show()
             }
         }
     }
