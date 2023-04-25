@@ -15,7 +15,7 @@ import com.belyakov.notesforepilepsy.R
 import com.belyakov.ui.elements.EventItem
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.belyakov.notesforepilepsy.presentation.viewModel.MainViewModel
+import com.belyakov.notesforepilepsy.presentation.viewModel.SharedMainViewModel
 import com.belyakov.ui.elements.DefaultToolbar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -31,12 +31,12 @@ fun MainScreen(
     onOpenProfile: () -> Unit,
     onSosClicked: () -> Unit,
     onAddNotes: () -> Unit,
-    mainViewModel: MainViewModel = viewModel()
+    sharedMainViewModel: SharedMainViewModel = viewModel()
 ) {
 
     val toolbarHeight = remember { mutableStateOf(0) }
 
-    val dataEvents by mainViewModel.data.collectAsState()
+    val dataEvents by sharedMainViewModel.data.collectAsState()
     val itemsListState = rememberLazyListState()
 
     Box(
@@ -108,5 +108,4 @@ fun MainScreen(
             }
         }
     }
-
 }

@@ -10,7 +10,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.belyakov.ui.ext.noRippleClickable
-import com.belyakov.notesforepilepsy.R
+import com.belyakov.ui.R
 
 @Composable
 fun AuthToolbar(

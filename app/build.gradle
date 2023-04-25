@@ -7,8 +7,6 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    namespace 'com.belyakov.notesforepilepsy'
-
     compileSdkVersion sdkCompileVersion
     buildToolsVersion buildToolsAllVersion
 
@@ -46,8 +44,10 @@ android {
 
 dependencies {
 
-//    implementation project(":auth")
+    implementation project(":auth")
     implementation project(":ui")
+
+//    implementation 'com.android.support:multidex:1.0.3'
 
     // AndroidX
     implementation 'androidx.core:core-ktx:1.9.0'

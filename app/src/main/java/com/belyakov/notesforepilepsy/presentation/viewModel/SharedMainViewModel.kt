@@ -12,7 +12,7 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class MainViewModel(
+class SharedMainViewModel(
     databaseUrl: String
 ) : ViewModel() {
 

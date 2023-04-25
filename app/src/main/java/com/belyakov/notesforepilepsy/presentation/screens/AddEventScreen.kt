@@ -15,14 +15,13 @@ import androidx.compose.ui.layout.layout
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
-import com.belyakov.notesforepilepsy.presentation.viewModel.MainViewModel
+import com.belyakov.notesforepilepsy.presentation.viewModel.SharedMainViewModel
 import com.belyakov.ui.elements.DefaultToolbar
 import com.belyakov.notesforepilepsy.utils.MeasureDefaultToolbarHeight
 
 @Composable
 fun AddEventScreen(
-    mainViewModel: MainViewModel = viewModel(),
+    sharedMainViewModel: SharedMainViewModel = viewModel(),
     onNotesSaved: () -> Unit,
     onBackClicked: () -> Unit
 ) {
@@ -33,7 +32,7 @@ fun AddEventScreen(
 
         // функция для сохранения данных в mainViewModel и перехода на предыдущий экран
     fun onSaveClicked() {
-        mainViewModel.addNotes(
+        sharedMainViewModel.addNotes(
             titleState.value,
             descriptionState.value,
             dateState.value

@@ -2,7 +2,6 @@ package com.belyakov.notesforepilepsy.presentation.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -15,13 +14,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import com.belyakov.notesforepilepsy.R
-import com.belyakov.notesforepilepsy.presentation.viewModel.MainViewModel
+import com.belyakov.notesforepilepsy.presentation.viewModel.SharedMainViewModel
 
 @Composable
 fun ProfileScreen(
-    mainViewModel: MainViewModel = viewModel(),
+    sharedMainViewModel: SharedMainViewModel = viewModel(),
     onDataSaved: () -> Unit,
     onBackClicked: () -> Unit,
     onSosClicked: () -> Unit

@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.belyakov.notesforepilepsy.R
+import com.belyakov.ui.R
 
 @Composable
 fun EventItem(
