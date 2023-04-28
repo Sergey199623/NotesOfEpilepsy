@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
@@ -25,8 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.belyakov.ui.ext.dpToSp
-import com.belyakov.ui.theme.PrimaryTextColor
-import com.belyakov.ui.theme.fontFamily
+import com.belyakov.ui.theme.*
 
 @Composable
 fun TextEditor(
@@ -66,7 +66,7 @@ fun TextEditor(
                     .height(64.dp)
             },
             roundedCornerShape = RoundedCornerShape(8.dp),
-            background = GrayBackground
+            background = CardBackgroundGrey
         ) {
             Column(
                 modifier = Modifier.padding(
@@ -155,7 +155,7 @@ fun TextEditorLogin(
                     .height(64.dp)
             },
             roundedCornerShape = RoundedCornerShape(8.dp),
-            background = GrayBackground
+            background = CardBackgroundGrey
         ) {
             Column(
                 modifier = Modifier.padding(
@@ -167,7 +167,7 @@ fun TextEditorLogin(
             ) {
                 Text(
                     modifier = Modifier.padding(0.dp),
-                    text = label,
+                    text = stringResource(id = label),
                     color = PrimaryTextColor,
                     fontWeight = FontWeight.Normal,
                     fontFamily = fontFamily,
@@ -231,5 +231,42 @@ fun TextEditorLogin(
         }
         Spacer(modifier = Modifier.height(6.dp))
         ErrorText(leftError, rightError)
+    }
+}
+
+@Composable
+fun ErrorText(
+    leftText: String,
+    rightText: String,
+    leftColor: Color = ErrorRed,
+    rightColor: Color = ErrorRed
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            modifier = Modifier.padding(0.dp),
+            text = leftText,
+            color = leftColor,
+            fontWeight = FontWeight.Normal,
+            fontFamily = fontFamily,
+            fontStyle = FontStyle.Normal,
+            fontSize = dpToSp(12.dp),
+            letterSpacing = dpToSp(0.2.dp),
+            lineHeight = dpToSp(20.dp)
+        )
+
+        Text(
+            modifier = Modifier.padding(0.dp),
+            text = rightText,
+            color = rightColor,
+            fontWeight = FontWeight.Normal,
+            fontFamily = fontFamily,
+            fontStyle = FontStyle.Normal,
+            fontSize = dpToSp(12.dp),
+            letterSpacing = dpToSp(0.2.dp),
+            lineHeight = dpToSp(20.dp)
+        )
     }
 }

@@ -25,7 +25,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.belyakov.auth.presentation.AuthViewModel
+import com.belyakov.auth.presentation.SharedAuthViewModel
 import com.belyakov.ui.ext.clearFocusOnKeyboardDismiss
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -36,7 +36,7 @@ import com.belyakov.ui.theme.fontFamily
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class)
 @Composable
 fun RegistrationScreen(
-    viewModel: AuthViewModel,
+    viewModel: SharedAuthViewModel,
     navController: NavHostController
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -56,8 +56,12 @@ fun RegistrationScreen(
                 .padding(WindowInsets.ime.asPaddingValues()),
             topContent = {
                 AuthToolbar(
-                    onClose = { component.onCancel() },
-                    onBack = { component.onBack() })
+                    onClose = {
+                        // todo
+                    },
+                    onBack = {
+                        // todo
+                    })
             },
             title = stringResource(id = R.string.auth_title_registration),
             text = stringResource(id = R.string.auth_subtitle_registration),
@@ -77,7 +81,8 @@ fun RegistrationScreen(
 
                     label = stringResource(id = R.string.auth_registration_user_name),
                     onTextChange = {
-                        component.onNameInput(it)
+                        // todo
+//                        component.onNameInput(it)
                         Log.d("", it)
                     },
                     leftError = model.error,
@@ -90,7 +95,8 @@ fun RegistrationScreen(
                     keyboardActions = KeyboardActions(
                         onDone = {
                             keyboardController?.hide()
-                            component.onNext()
+                            // todo
+//                            component.onNext()
                         }
                     )
                 )
@@ -99,7 +105,10 @@ fun RegistrationScreen(
                     modifier = Modifier.fillMaxWidth(),
                     text = stringResource(id = R.string.auth_login_btn_next),
                     enabled = model.error.isEmpty(),
-                    onClick = { component.onNext() },
+                    onClick = {
+//                        component.onNext()
+                        // todo
+                    },
                     type = if (model.loading) ButtonState.Loading else ButtonState.Unsubscribed
                 )
                 Spacer(

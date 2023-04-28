@@ -14,7 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.belyakov.auth.RegistrationScreen
-import com.belyakov.auth.presentation.AuthViewModel
+import com.belyakov.auth.presentation.SharedAuthViewModel
 import com.belyakov.navigation.navigate.BottomNavigationScreens
 import com.belyakov.notesforepilepsy.presentation.screens.AddEventScreen
 import com.belyakov.notesforepilepsy.presentation.screens.MainScreen
@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val sharedMainViewModel = SharedMainViewModel(getString(R.string.firebase_database_url))
-        val authViewModel = AuthViewModel()
+        val sharedAuthViewModel = SharedAuthViewModel()
         val isHasAuth = false
 
         setContent {
@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
                         composable(route = BottomNavigationScreens.RegistrationScreen.route) {
                             RegistrationScreen(
                                 navController = navController,
-                                viewModel = authViewModel
+                                viewModel = sharedAuthViewModel
                             )
                         }
 //                        composable(route = NavigateTo.CODE_SCREEN.value) {
