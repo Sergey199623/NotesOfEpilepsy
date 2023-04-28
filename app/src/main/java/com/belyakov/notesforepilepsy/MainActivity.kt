@@ -13,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.belyakov.auth.RegistrationScreen
+import com.belyakov.auth.presentation.AuthViewModel
 import com.belyakov.navigation.navigate.BottomNavigationScreens
 import com.belyakov.notesforepilepsy.presentation.screens.AddEventScreen
 import com.belyakov.notesforepilepsy.presentation.screens.MainScreen
@@ -27,6 +29,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val sharedMainViewModel = SharedMainViewModel(getString(R.string.firebase_database_url))
+        val authViewModel = AuthViewModel()
+        val isHasAuth = false
 
         setContent {
             val navController = rememberNavController()
@@ -37,20 +41,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-//                    if (true) {
-//                        MainScreen(
-//                            navController = navController,
-//                        )
-//                    } else {
-////
-//                    }
 
                     NavHost(
                         navController = navController,
-                        startDestination = BottomNavigationScreens.MainScreen.route
+                        startDestination = if (!isHasAuth) BottomNavigationScreens.MainScreen.route else BottomNavigationScreens.RegistrationScreen.route
                     ) {
-//                        composable(route = BottomNavigationScreens.) {
-//                        }
+                        composable(route = BottomNavigationScreens.RegistrationScreen.route) {
+                            RegistrationScreen(
+                                navController = navController,
+                                viewModel = authViewModel
+                            )
+                        }
 //                        composable(route = NavigateTo.CODE_SCREEN.value) {
 //                        }
 //                        composable(route = NavigateTo.REGISTRATION_SCREEN.value) {
@@ -58,11 +59,9 @@ class MainActivity : ComponentActivity() {
                         composable(route = BottomNavigationScreens.MainScreen.route) {
                             MainScreen(
                                 navController = navController,
-                                onOpenProfile = { navController.navigate(BottomNavigationScreens.ProfileScreen.route) },
                                 onSosClicked = {
                                     // callEmergency()
                                 },
-                                onAddNotes = { navController.navigate(BottomNavigationScreens.AddEventScreen.route) },
                                 sharedMainViewModel = sharedMainViewModel
                             )
                         }

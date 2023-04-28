@@ -29,11 +29,11 @@ sealed class BottomNavigationScreens(
         R.drawable.ic_capsule
     )
 
-//    object RegistrationScreen : BottomNavigationScreens(
-//        "registration_screen",
-//        R.string.scary_bag_screen_route,
-//        Icons.Filled.Cake
-//    )
+    object RegistrationScreen : BottomNavigationScreens(
+        "registration_screen",
+        R.string.navigation_registration_screen,
+        R.drawable.ic_profile
+    )
 //
 //    object CodeScreen :
 //        BottomNavigationScreens("code_screen", R.string.scary_bag_screen_route, Icons.Filled.Cake)

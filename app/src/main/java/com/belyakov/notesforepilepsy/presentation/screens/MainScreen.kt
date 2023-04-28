@@ -31,9 +31,7 @@ import com.belyakov.ui.theme.PrimaryBackgroundColor
 @Composable
 fun MainScreen(
     navController: NavHostController,
-    onOpenProfile: () -> Unit,
     onSosClicked: () -> Unit,
-    onAddNotes: () -> Unit,
     sharedMainViewModel: SharedMainViewModel = viewModel()
 ) {
     val toolbarHeight = remember { mutableStateOf(0) }
