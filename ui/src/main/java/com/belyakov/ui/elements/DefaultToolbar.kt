@@ -20,8 +20,6 @@ import com.belyakov.ui.ext.noRippleClickable
 
 @Composable
 fun DefaultToolbar(
-    onOpenProfile: () -> Unit = { },
-    onSosClicked: () -> Unit = { },
     onBackClosed: () -> Unit = { },
 //    title: Int,
     isMainScreen: Boolean,
@@ -32,30 +30,18 @@ fun DefaultToolbar(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (isMainScreen) {
+        if (isShowBackIconNeeded) {
             Image(
-                painter = painterResource(R.drawable.ic_profile),
+                painter = painterResource(R.drawable.ic_back),
                 modifier = Modifier
                     .weight(1f)
                     .clip(CircleShape)
-                    .noRippleClickable { onOpenProfile() }
+                    .noRippleClickable { onBackClosed() }
                     .padding(16.dp, 16.dp),
                 contentDescription = null
             )
         } else {
-            if (isShowBackIconNeeded) {
-                Image(
-                    painter = painterResource(R.drawable.ic_back),
-                    modifier = Modifier
-                        .weight(1f)
-                        .clip(CircleShape)
-                        .noRippleClickable { onBackClosed() }
-                        .padding(16.dp, 16.dp),
-                    contentDescription = null
-                )
-            } else {
-                Spacer(modifier = Modifier.size(32.dp))
-            }
+            Spacer(modifier = Modifier.size(32.dp))
         }
         Text(
             text = stringResource(id = R.string.main_screen_title),
@@ -73,7 +59,7 @@ fun DefaultToolbar(
             modifier = Modifier
                 .weight(1f)
                 .clip(CircleShape)
-                .noRippleClickable { onSosClicked() }
+//                .noRippleClickable { onSosClicked() }
                 .padding(16.dp, 16.dp),
             contentDescription = null
         )

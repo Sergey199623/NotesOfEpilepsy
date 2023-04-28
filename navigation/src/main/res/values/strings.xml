@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">navigation</string>
+    <string name="navigation_main_screen">Main</string>
+    <string name="navigation_profile_screen">Profile</string>
+    <string name="navigation_add_events_screen">Events</string>
+    <string name="navigation_course_screen">Course</string>
+</resources>

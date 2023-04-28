@@ -8,7 +8,6 @@ drawable ic_arrow_back
 drawable ic_arrow_forward
 drawable ic_back
 drawable ic_cross_close
-drawable ic_profile
 drawable ic_sos
 drawable ic_sos_on_map
 drawable image_sos

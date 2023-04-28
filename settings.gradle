@@ -16,3 +16,4 @@ rootProject.name = "NotesForEpilepsy"
 include ":app"
 include ":auth"
 include ":ui"
+include ':navigation'
