@@ -32,7 +32,7 @@ fun showSystemUi(activity: Activity) {
 @Composable
 fun MeasureDefaultToolbarHeight(onToolbarHeightMeasured: (Int) -> Unit) {
     Layout(
-        content = { DefaultToolbar(isMainScreen = false, isShowBackIconNeeded = false) },
+        content = { DefaultToolbar() },
         measurePolicy = { measurables, constraints ->
             val placeable = measurables.first().measure(constraints)
             layout(placeable.width, placeable.height) {

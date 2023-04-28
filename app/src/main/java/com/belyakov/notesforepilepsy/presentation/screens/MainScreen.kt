@@ -19,25 +19,23 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.layout
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.IntOffset
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.belyakov.navigation.navigate.BottomNavigationScreens
-import com.belyakov.notesforepilepsy.utils.MeasureDefaultToolbarHeight
+import com.belyakov.ui.theme.PrimaryBackgroundColor
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MainScreen(
     navController: NavHostController,
+    onOpenProfile: () -> Unit,
+    onSosClicked: () -> Unit,
+    onAddNotes: () -> Unit,
+    sharedMainViewModel: SharedMainViewModel = viewModel()
 ) {
-    val url = LocalContext.current.getString(R.string.firebase_database_url)
-
-    val sharedMainViewModel = SharedMainViewModel(url)
-
     val toolbarHeight = remember { mutableStateOf(0) }
 
     val dataEvents by sharedMainViewModel.data.collectAsState()
@@ -46,29 +44,27 @@ fun MainScreen(
 
     val bottomNavigationItems = listOf(
         BottomNavigationScreens.AddEventScreen,
-        BottomNavigationScreens.ProfileScreen,
         BottomNavigationScreens.MainScreen,
+        BottomNavigationScreens.ProfileScreen,
     )
 
-    Box(
+    Scaffold(
         modifier = Modifier.fillMaxSize(),
+        topBar = {
+            Row(
+                modifier = Modifier
+                    .background(Color(android.graphics.Color.parseColor("#FF00BCD4")))
+            ) {
+                DefaultToolbar()
+            }
+        },
+        bottomBar = {
+            BottomNavigationBar(navController, bottomNavigationItems)
+        },
     ) {
-        MeasureDefaultToolbarHeight { toolbarHeight.value = it }
-        Row(
-            modifier = Modifier
-                .background(Color(android.graphics.Color.parseColor("#FF00BCD4")))
-                .align(Alignment.TopCenter),
-        ) {
-            DefaultToolbar(
-                isMainScreen = true,
-                isShowBackIconNeeded = false
-            )
-        }
-
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .align(Alignment.TopCenter)
                 .layout { measurable, constraints ->
                     val placeable = measurable.measure(constraints)
 
@@ -100,76 +96,6 @@ fun MainScreen(
                 }
             }
         }
-
-        Scaffold(
-            bottomBar = {
-                BottomNavigationBar(navController, bottomNavigationItems)
-            },
-        ) {
-            MainScreenNavigationConfigurations(navController)
-        }
-
-//        Box(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .padding(16.dp)
-//                .align(Alignment.BottomCenter),
-//            contentAlignment = Alignment.BottomCenter
-//        ) {
-//            BottomNavBar(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .zIndex(1f)
-//                    .onGloballyPositioned { layoutCoordinates ->
-//                        tabBarSize = layoutCoordinates.size.toSize()
-//                    },
-//                navController = navController
-//            )
-//        }
-
-//        Row(
-//            modifier = Modifier
-//                .padding(16.dp)
-//                .align(Alignment.BottomCenter)
-//        ) {
-//            IconButton(
-//                onClick = { onAddNotes() }
-//            ) {
-//                Image(
-//                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_add_notes),
-//                    contentDescription = null,
-//                    modifier = Modifier.size(64.dp)
-//                )
-//            }
-//        }
-    }
-}
-
-@Composable
-private fun MainScreenNavigationConfigurations(
-    navController: NavHostController
-) {
-    NavHost(navController, startDestination = BottomNavigationScreens.MainScreen.route) {
-        composable(BottomNavigationScreens.MainScreen.route) {
-            MainScreen(navController = navController)
-        }
-        composable(BottomNavigationScreens.ProfileScreen.route) {
-            ProfileScreen(
-                onDataSaved = {
-                    // todo реализовать сохранение данных пользователя на удаленной БД
-                },
-                onBackClicked = { navController.navigateUp() },
-                onSosClicked = {
-//                  callEmergency()
-                }
-            )
-        }
-        composable(BottomNavigationScreens.AddEventScreen.route) {
-            AddEventScreen(
-                onNotesSaved = { navController.navigateUp() },
-                onBackClicked = { navController.navigateUp() }
-            )
-        }
     }
 }
 
@@ -178,14 +104,16 @@ private fun BottomNavigationBar(
     navController: NavHostController,
     items: List<BottomNavigationScreens>
 ) {
-    BottomNavigation {
+    BottomNavigation(
+        backgroundColor = PrimaryBackgroundColor
+    ) {
         val currentRoute = currentRoute(navController)
         items.forEach { screen ->
             BottomNavigationItem(
                 icon = { Icon(painterResource(id = screen.icon), contentDescription = null) },
                 label = { Text(stringResource(id = screen.resourceId)) },
                 selected = currentRoute == screen.route,
-//                alwaysShowLabels = false, // This hides the title for the unselected items
+                alwaysShowLabel = false, // This hides the title for the unselected items
                 onClick = {
                     // This if check gives us a "singleTop" behavior where we do not create a
                     // second instance of the composable if we are already on that destination

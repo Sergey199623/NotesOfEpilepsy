@@ -10,8 +10,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.belyakov.navigation.navigate.BottomNavigationScreens
+import com.belyakov.notesforepilepsy.presentation.screens.AddEventScreen
 import com.belyakov.notesforepilepsy.presentation.screens.MainScreen
+import com.belyakov.notesforepilepsy.presentation.screens.ProfileScreen
 import com.belyakov.notesforepilepsy.presentation.viewModel.SharedMainViewModel
 import com.belyakov.notesforepilepsy.ui.theme.NotesForEpilepsyTheme
 
@@ -21,68 +26,66 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val url = getString(R.string.firebase_database_url)
-
-        val sharedMainViewModel = SharedMainViewModel(url)
-//        val sharedAuthViewModel = AuthViewModel()
+        val sharedMainViewModel = SharedMainViewModel(getString(R.string.firebase_database_url))
 
         setContent {
             val navController = rememberNavController()
             NotesForEpilepsyTheme {
                 // A surface container using the 'background' color from the theme
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    if (true) {
-                        MainScreen(
-                            navController = navController,
-                        )
-                    } else {
-//
-                    }
+//                    if (true) {
+//                        MainScreen(
+//                            navController = navController,
+//                        )
+//                    } else {
+////
+//                    }
 
-//                    NavHost(
-//                        navController = navController,
-//                        startDestination = NavigateTo.MAIN_SCREEN.value
-//                    ) {
-//                        composable(route = NavigateTo.LOGIN_SCREEN.value) {
+                    NavHost(
+                        navController = navController,
+                        startDestination = BottomNavigationScreens.MainScreen.route
+                    ) {
+//                        composable(route = BottomNavigationScreens.) {
 //                        }
 //                        composable(route = NavigateTo.CODE_SCREEN.value) {
 //                        }
 //                        composable(route = NavigateTo.REGISTRATION_SCREEN.value) {
 //                        }
-//                        composable(route = NavigateTo.MAIN_SCREEN.value) {
-//                            MainScreen(
-//                                navController = navController,
-//                                onOpenProfile = { navController.navigate(NavigateTo.PROFILE_SCREEN.value) },
-//                                onSosClicked = {
-//                                    // callEmergency()
-//                                },
-//                                onAddNotes = { navController.navigate(NavigateTo.ADD_NOTES_SCREEN.value) },
-//                                sharedMainViewModel = sharedMainViewModel
-//                            )
-//                        }
-//                        composable(route = NavigateTo.PROFILE_SCREEN.value) { backStackEntry ->
-//                            ProfileScreen(
-//                                sharedMainViewModel = sharedMainViewModel,
-//                                onDataSaved = {
-//                                    // todo реализовать сохранение данных пользователя на удаленной БД
-//                                },
-//                                onBackClicked = { navController.navigateUp() },
-//                                onSosClicked = {
-////                                    callEmergency()
-//                                }
-//                            )
-//                        }
-//                        composable(route = NavigateTo.ADD_NOTES_SCREEN.value) { backStackEntry ->
-//                            AddEventScreen(
-//                                sharedMainViewModel = sharedMainViewModel,
-//                                onNotesSaved = { navController.navigate(NavigateTo.MAIN_SCREEN.value) },
-//                                onBackClicked = { navController.navigateUp() }
-//                            )
-//                        }
-//                    }
+                        composable(route = BottomNavigationScreens.MainScreen.route) {
+                            MainScreen(
+                                navController = navController,
+                                onOpenProfile = { navController.navigate(BottomNavigationScreens.ProfileScreen.route) },
+                                onSosClicked = {
+                                    // callEmergency()
+                                },
+                                onAddNotes = { navController.navigate(BottomNavigationScreens.AddEventScreen.route) },
+                                sharedMainViewModel = sharedMainViewModel
+                            )
+                        }
+                        composable(route = BottomNavigationScreens.ProfileScreen.route) { backStackEntry ->
+                            ProfileScreen(
+                                sharedMainViewModel = sharedMainViewModel,
+                                onDataSaved = {
+                                    // todo реализовать сохранение данных пользователя на удаленной БД
+                                },
+                                onBackClicked = { navController.navigateUp() },
+                                onSosClicked = {
+//                                    callEmergency()
+                                }
+                            )
+                        }
+                        composable(route = BottomNavigationScreens.AddEventScreen.route) { backStackEntry ->
+                            AddEventScreen(
+                                sharedMainViewModel = sharedMainViewModel,
+                                onNotesSaved = { navController.navigate(BottomNavigationScreens.MainScreen.route) },
+                                onBackClicked = { navController.navigateUp() }
+                            )
+                        }
+                    }
                 }
             }
         }

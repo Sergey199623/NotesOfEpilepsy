@@ -49,11 +49,7 @@ fun AddEventScreen(
                 .background(Color(android.graphics.Color.parseColor("#FF00BCD4")))
                 .align(Alignment.TopCenter),
         ) {
-            DefaultToolbar(
-                onBackClosed = onBackClicked,
-                isMainScreen = false,
-                isShowBackIconNeeded = true
-            )
+            DefaultToolbar(onBackClosed = onBackClicked,)
         }
 
         Column(
