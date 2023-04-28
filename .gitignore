@@ -1,4 +1,9 @@
 *.iml
+*.at
+*.len
+*.tab
+*.keystream
+*.bin
 .gradle
 /local.properties
 /.idea/caches
