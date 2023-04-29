@@ -51,6 +51,7 @@ dependencies {
     implementation koinDependencies.core
 
     implementation composeDependencies.ui
+    implementation composeDependencies.foundationLayout
     implementation composeDependencies.uiPreview
     implementation composeDependencies.material
     implementation composeDependencies.navigation

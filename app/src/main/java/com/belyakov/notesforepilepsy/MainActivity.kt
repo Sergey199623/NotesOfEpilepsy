@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = if (!isHasAuth) BottomNavigationScreens.MainScreen.route else BottomNavigationScreens.RegistrationScreen.route
+                        startDestination = if (isHasAuth) BottomNavigationScreens.MainScreen.route else BottomNavigationScreens.RegistrationScreen.route
                     ) {
                         composable(route = BottomNavigationScreens.RegistrationScreen.route) {
                             RegistrationScreen(

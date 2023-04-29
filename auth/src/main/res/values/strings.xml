@@ -11,4 +11,9 @@
     <string name="auth_input_code">Введите код подтверждения</string>
     <string name="auth_back_to_registration">Вернуться к авторизации</string>
     <string name="auth_error_registration">Подтверждение регистрации аккаунта невозможно</string>
+    <string name="registration_screen_title">Регистрация</string>
+    <string name="registration_screen_btn_next">Далее</string>
+    <string name="registration_screen_hint_name">Введите свое имя</string>
+    <string name="registration_screen_hint_age">Введите свой возраст</string>
+    <string name="registration_screen_hint_telephone_number">Введите свой номер телефона</string>
 </resources>

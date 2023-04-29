@@ -19,4 +19,9 @@ int string auth_registration_user_name 0x0
 int string auth_repeat_send_code 0x0
 int string auth_subtitle_registration 0x0
 int string auth_title_registration 0x0
+int string registration_screen_btn_next 0x0
+int string registration_screen_hint_age 0x0
+int string registration_screen_hint_name 0x0
+int string registration_screen_hint_telephone_number 0x0
+int string registration_screen_title 0x0
 int style Theme_NotesForEpilepsy 0x0

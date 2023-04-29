@@ -21,4 +21,9 @@ string auth_registration_user_name
 string auth_repeat_send_code
 string auth_subtitle_registration
 string auth_title_registration
+string registration_screen_btn_next
+string registration_screen_hint_age
+string registration_screen_hint_name
+string registration_screen_hint_telephone_number
+string registration_screen_title
 style Theme.NotesForEpilepsy

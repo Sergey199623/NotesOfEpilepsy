@@ -1,6 +1,6 @@
 package com.belyakov.auth
 
-//import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
 //import androidx.compose.foundation.layout.*
 //import androidx.compose.foundation.relocation.BringIntoViewRequester
 //import androidx.compose.foundation.relocation.bringIntoViewRequester
@@ -21,17 +21,16 @@ package com.belyakov.auth
 //import androidx.compose.ui.text.input.VisualTransformation
 //import androidx.compose.ui.unit.dp
 //import androidx.navigation.NavHostController
-//import com.belyakov.auth.presentation.AuthViewModel
-//import com.belyakov.notesforepilepsy.R
+//import com.belyakov.auth.presentation.SharedAuthViewModel
 //import com.belyakov.ui.elements.*
 //import com.belyakov.ui.ext.clearFocusOnKeyboardDismiss
 //import kotlinx.coroutines.delay
 //import kotlinx.coroutines.launch
-
+//
 //@OptIn(ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class)
 //@Composable
 //fun LoginScreen(
-//    viewModel: AuthViewModel,
+//    viewModel: SharedAuthViewModel,
 //    navController: NavHostController
 //) {
 //
@@ -40,9 +39,7 @@ package com.belyakov.auth
 //    val keyboardController = LocalSoftwareKeyboardController.current
 //    val coroutineScope = rememberCoroutineScope()
 //
-//    var prefix = remember {
-//        ""
-//    }
+//    var prefix = remember { "" }
 //
 //    Box(
 //        modifier = Modifier
@@ -50,9 +47,13 @@ package com.belyakov.auth
 //            .verticalScroll(rememberScrollState())
 //            .padding(start = 16.dp, end = 16.dp, top = 52.dp, bottom = 16.dp)
 //    ) {
-//        ScaffoldSubmitForm(
+//        SubmitForm(
 //            modifier = Modifier.fillMaxSize(),
-//            topContent = { AuthToolbar(onClose = { component.onCancel() }) },
+//            topContent = {
+//                AuthToolbar(onClose = {
+////                component.onCancel()
+//                })
+//            },
 //            title = stringResource(R.string.auth_login_title),
 //            text = stringResource(R.string.auth_login_subtitle),
 //            bottomContent = {
@@ -118,7 +119,9 @@ package com.belyakov.auth
 //                LoginButton(
 //                    modifier = Modifier.fillMaxWidth(),
 //                    text = stringResource(R.string.auth_login_btn_next),
-//                    onClick = { component.onNext() },
+//                    onClick = {
+//                        component.onNext()
+//                    },
 //                    enabled = !model.formatError,
 //                    type = if (model.loading) ButtonState.Loading else ButtonState.Unsubscribed
 //                )

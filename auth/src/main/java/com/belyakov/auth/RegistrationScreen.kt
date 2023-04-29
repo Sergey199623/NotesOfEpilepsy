@@ -1,133 +1,78 @@
 package com.belyakov.auth
 
-import android.util.Log
-import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.relocation.BringIntoViewRequester
-import androidx.compose.foundation.relocation.bringIntoViewRequester
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.onFocusEvent
-import androidx.compose.ui.graphics.Color.Companion.White
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.belyakov.auth.presentation.SharedAuthViewModel
-import com.belyakov.ui.ext.clearFocusOnKeyboardDismiss
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import com.belyakov.ui.elements.*
-import com.belyakov.ui.ext.dpToSp
-import com.belyakov.ui.theme.fontFamily
 
-@OptIn(ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class)
 @Composable
 fun RegistrationScreen(
     viewModel: SharedAuthViewModel,
     navController: NavHostController
 ) {
-    val keyboardController = LocalSoftwareKeyboardController.current
-    val scrollState = rememberScrollState()
-    val bringIntoViewRequester = remember { BringIntoViewRequester() }
-    val coroutineScope = rememberCoroutineScope()
+    var name by remember { mutableStateOf("") }
+    var age by remember { mutableStateOf("") }
+    var phone by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
-            .verticalScroll(scrollState)
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 16.dp, top = 52.dp, bottom = 16.dp)
+            .fillMaxSize()
+            .border(4.dp, Color.Black, shape = RoundedCornerShape(16.dp))
+            .padding(horizontal = 16.dp, vertical = 32.dp)
     ) {
-        SubmitForm(
+        Column {
+            Text(
+                text = stringResource(id = R.string.registration_screen_title),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
+            TextField(
+                value = name,
+                onValueChange = { name = it },
+                label = { Text(text = stringResource(id = R.string.registration_screen_hint_name)) },
+                modifier = Modifier.fillMaxWidth(),
+            )
+            Spacer(modifier = Modifier.size(12.dp))
+            TextField(
+                value = age,
+                onValueChange = { age = it },
+                label = { Text(text = stringResource(id = R.string.registration_screen_hint_age)) },
+                modifier = Modifier.fillMaxWidth(),
+            )
+            Spacer(modifier = Modifier.size(12.dp))
+            TextField(
+                value = phone,
+                onValueChange = { phone = it},
+                label = { Text(text = stringResource(id = R.string.registration_screen_hint_telephone_number)) },
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Phone),
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+        Button(
+            onClick = {},
             modifier = Modifier
-                .fillMaxSize()
-                .padding(WindowInsets.ime.asPaddingValues()),
-            topContent = {
-                AuthToolbar(
-                    onClose = {
-                        // todo
-                    },
-                    onBack = {
-                        // todo
-                    })
-            },
-            title = stringResource(id = R.string.auth_title_registration),
-            text = stringResource(id = R.string.auth_subtitle_registration),
-            bottomContent = {
-                TextEditor(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clearFocusOnKeyboardDismiss()
-                        .onFocusEvent { focusState ->
-                            if (focusState.isFocused) {
-                                coroutineScope.launch {
-                                    delay(500)
-                                    bringIntoViewRequester.bringIntoView()
-                                }
-                            }
-                        },
-
-                    label = stringResource(id = R.string.auth_registration_user_name),
-                    onTextChange = {
-                        // todo
-//                        component.onNameInput(it)
-                        Log.d("", it)
-                    },
-                    leftError = model.error,
-                    rightError = if (model.error.isNotEmpty()) "${model.name.length}/30" else "",
-                    limit = 30,
-                    keyboardOptions = KeyboardOptions(
-                        imeAction = ImeAction.Done,
-                        autoCorrect = false
-                    ),
-                    keyboardActions = KeyboardActions(
-                        onDone = {
-                            keyboardController?.hide()
-                            // todo
-//                            component.onNext()
-                        }
-                    )
-                )
-                Spacer(modifier = Modifier.height(24.dp))
-                LoginButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(id = R.string.auth_login_btn_next),
-                    enabled = model.error.isEmpty(),
-                    onClick = {
-//                        component.onNext()
-                        // todo
-                    },
-                    type = if (model.loading) ButtonState.Loading else ButtonState.Unsubscribed
-                )
-                Spacer(
-                    modifier = Modifier
-                        .height(16.dp)
-                        .fillMaxWidth()
-                )
-                Text(
-                    modifier = Modifier.bringIntoViewRequester(bringIntoViewRequester),
-                    text = stringResource(id = R.string.auth_privacy_policies),
-                    color = White,
-                    fontWeight = FontWeight.Normal,
-                    fontFamily = fontFamily,
-                    fontStyle = FontStyle.Normal,
-                    fontSize = dpToSp(12.dp),
-                    letterSpacing = dpToSp(0.2.dp),
-                    textAlign = TextAlign.Center
-                )
-            }
-        )
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter),
+            shape = RoundedCornerShape(12.dp),
+        ) {
+            Text(
+                text = stringResource(id = R.string.registration_screen_btn_next),
+                color = Color.White,
+                modifier = Modifier.padding(8.dp)
+            )
+        }
     }
 }

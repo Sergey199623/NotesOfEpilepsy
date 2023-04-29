@@ -17,6 +17,11 @@
     <string name="auth_repeat_send_code">Получить код ещё раз</string>
     <string name="auth_subtitle_registration">Введите ваше имя</string>
     <string name="auth_title_registration">Регистрация</string>
+    <string name="registration_screen_btn_next">Далее</string>
+    <string name="registration_screen_hint_age">Введите свой возраст</string>
+    <string name="registration_screen_hint_name">Введите свое имя</string>
+    <string name="registration_screen_hint_telephone_number">Введите свой номер телефона</string>
+    <string name="registration_screen_title">Регистрация</string>
     <style name="Theme.NotesForEpilepsy" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/primary_accent_color</item>
     </style>
