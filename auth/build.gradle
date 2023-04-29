@@ -55,4 +55,7 @@ dependencies {
     implementation composeDependencies.uiPreview
     implementation composeDependencies.material
     implementation composeDependencies.navigation
+
+    implementation firebaseDependencies.auth
+    implementation firebaseDependencies.database
 }

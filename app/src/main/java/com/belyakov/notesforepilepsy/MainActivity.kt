@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val sharedMainViewModel = SharedMainViewModel(getString(R.string.firebase_database_url))
-        val sharedAuthViewModel = SharedAuthViewModel()
+        val sharedAuthViewModel = SharedAuthViewModel(getString(R.string.firebase_database_url))
         val isHasAuth = false
 
         setContent {
