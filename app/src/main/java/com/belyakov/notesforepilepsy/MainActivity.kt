@@ -13,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.belyakov.auth.AuthScreen
+import com.belyakov.auth.ConfirmCodeScreen
 import com.belyakov.auth.RegistrationScreen
 import com.belyakov.auth.presentation.SharedAuthViewModel
 import com.belyakov.navigation.navigate.BottomNavigationScreens
@@ -44,7 +46,7 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = if (isHasAuth) BottomNavigationScreens.MainScreen.route else BottomNavigationScreens.RegistrationScreen.route
+                        startDestination = if (isHasAuth) BottomNavigationScreens.MainScreen.route else BottomNavigationScreens.AuthScreen.route
                     ) {
                         composable(route = BottomNavigationScreens.RegistrationScreen.route) {
                             RegistrationScreen(
@@ -52,10 +54,19 @@ class MainActivity : ComponentActivity() {
                                 viewModel = sharedAuthViewModel
                             )
                         }
-//                        composable(route = NavigateTo.CODE_SCREEN.value) {
-//                        }
-//                        composable(route = NavigateTo.REGISTRATION_SCREEN.value) {
-//                        }
+                        composable(route = BottomNavigationScreens.AuthScreen.route) {
+                            AuthScreen(
+                                navController = navController,
+                                viewModel = sharedAuthViewModel,
+                                onPhoneNumberClicked = { navController.navigate(BottomNavigationScreens.ConfirmCodeScreen.route) }
+                            )
+                        }
+                        composable(route = BottomNavigationScreens.ConfirmCodeScreen.route) {
+                            ConfirmCodeScreen(
+                                navController = navController,
+                                viewModel = sharedAuthViewModel,
+                            )
+                        }
                         composable(route = BottomNavigationScreens.MainScreen.route) {
                             MainScreen(
                                 navController = navController,

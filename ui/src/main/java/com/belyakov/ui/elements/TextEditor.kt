@@ -81,7 +81,7 @@ fun TextEditor(
                     text = label,
                     color = PrimaryTextColor,
                     fontWeight = FontWeight.Normal,
-                    fontFamily = fontFamily,
+                    fontFamily = robotoBase,
                     fontStyle = FontStyle.Normal,
                     fontSize = dpToSp(12.dp),
                     letterSpacing = dpToSp(0.2.dp),
@@ -106,7 +106,7 @@ fun TextEditor(
                             letterSpacing = dpToSp(0.dp),
                             lineHeight = dpToSp(22.dp),
                             color = Color.White,
-                            fontFamily = fontFamily,
+                            fontFamily = robotoBase,
                             fontStyle = FontStyle.Normal
                         )
                     ),
@@ -170,7 +170,7 @@ fun TextEditorLogin(
                     text = stringResource(id = label),
                     color = PrimaryTextColor,
                     fontWeight = FontWeight.Normal,
-                    fontFamily = fontFamily,
+                    fontFamily = robotoBase,
                     fontStyle = FontStyle.Normal,
                     fontSize = dpToSp(12.dp),
                     letterSpacing = dpToSp(0.2.dp),
@@ -191,7 +191,7 @@ fun TextEditorLogin(
                         letterSpacing = dpToSp(0.dp),
                         lineHeight = dpToSp(22.dp),
                         color = Color.White,
-                        fontFamily = fontFamily,
+                        fontFamily = robotoBase,
                         fontStyle = FontStyle.Normal
                     )
 
@@ -214,7 +214,7 @@ fun TextEditorLogin(
                                 letterSpacing = dpToSp(0.dp),
                                 lineHeight = dpToSp(22.dp),
                                 color = Color.White,
-                                fontFamily = fontFamily,
+                                fontFamily = robotoBase,
                                 fontStyle = FontStyle.Normal
                             )
                         ),
@@ -250,7 +250,7 @@ fun ErrorText(
             text = leftText,
             color = leftColor,
             fontWeight = FontWeight.Normal,
-            fontFamily = fontFamily,
+            fontFamily = robotoBase,
             fontStyle = FontStyle.Normal,
             fontSize = dpToSp(12.dp),
             letterSpacing = dpToSp(0.2.dp),
@@ -262,7 +262,7 @@ fun ErrorText(
             text = rightText,
             color = rightColor,
             fontWeight = FontWeight.Normal,
-            fontFamily = fontFamily,
+            fontFamily = robotoBase,
             fontStyle = FontStyle.Normal,
             fontSize = dpToSp(12.dp),
             letterSpacing = dpToSp(0.2.dp),

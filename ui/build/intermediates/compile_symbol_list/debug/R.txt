@@ -10,5 +10,7 @@ int drawable ic_cross_close 0x0
 int drawable ic_sos 0x0
 int drawable ic_sos_on_map 0x0
 int drawable image_sos 0x0
+int font montserrat_bold 0x0
+int font montserrat_regular 0x0
 int font roboto_base 0x0
 int string main_screen_title 0x0

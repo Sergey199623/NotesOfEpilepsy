@@ -1,22 +1,5 @@
 package com.belyakov.ui.elements
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.ClickableText
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.White
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import com.belyakov.ui.ext.dpToSp
-import com.belyakov.ui.theme.PrimaryTextColor
-import com.belyakov.ui.theme.fontFamily
-
 //@Composable
 //fun ScaffoldSubmitForm(
 //    modifier: Modifier = Modifier,

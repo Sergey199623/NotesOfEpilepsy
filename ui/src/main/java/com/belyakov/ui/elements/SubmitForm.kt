@@ -11,7 +11,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.belyakov.ui.ext.dpToSp
 import com.belyakov.ui.theme.PrimaryTextColor
-import com.belyakov.ui.theme.fontFamily
+import com.belyakov.ui.theme.robotoBase
 
 @Composable
 fun SubmitForm(
@@ -35,7 +35,7 @@ fun SubmitForm(
                 text = title,
                 color = White,
                 fontWeight = FontWeight.Bold,
-                fontFamily = fontFamily,
+                fontFamily = robotoBase,
                 fontStyle = FontStyle.Normal,
                 fontSize = dpToSp(20.dp),
                 letterSpacing = dpToSp(0.2.dp),
@@ -50,7 +50,7 @@ fun SubmitForm(
                 text = text,
                 color = PrimaryTextColor,
                 fontWeight = FontWeight.Normal,
-                fontFamily = fontFamily,
+                fontFamily = robotoBase,
                 fontStyle = FontStyle.Normal,
                 fontSize = dpToSp(14.dp),
                 letterSpacing = dpToSp(0.2.dp),

@@ -15,8 +15,13 @@
     <string name="auth_privacy_policies">Нажимая «Далее», я даю согласие на обработку персональных данных и принимаю условия пользовательского соглашения</string>
     <string name="auth_registration_user_name">Имя</string>
     <string name="auth_repeat_send_code">Получить код ещё раз</string>
+    <string name="auth_screen_btn_email">E-MAIL</string>
+    <string name="auth_screen_btn_phone">Номера телефона</string>
+    <string name="auth_screen_title">Войти с помощью</string>
     <string name="auth_subtitle_registration">Введите ваше имя</string>
     <string name="auth_title_registration">Регистрация</string>
+    <string name="confirm_code_screen_code">Введите код</string>
+    <string name="confirm_code_screen_title">Введите номер телефона</string>
     <string name="registration_screen_btn_next">Далее</string>
     <string name="registration_screen_hint_age">Введите свой возраст</string>
     <string name="registration_screen_hint_name">Введите свое имя</string>

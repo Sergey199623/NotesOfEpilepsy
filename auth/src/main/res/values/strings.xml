@@ -16,4 +16,9 @@
     <string name="registration_screen_hint_name">Введите свое имя</string>
     <string name="registration_screen_hint_age">Введите свой возраст</string>
     <string name="registration_screen_hint_telephone_number">Введите свой номер телефона</string>
+    <string name="auth_screen_title">Войти с помощью</string>
+    <string name="auth_screen_btn_phone">Номера телефона</string>
+    <string name="auth_screen_btn_email">E-MAIL</string>
+    <string name="confirm_code_screen_title">Введите номер телефона</string>
+    <string name="confirm_code_screen_code">Введите код</string>
 </resources>

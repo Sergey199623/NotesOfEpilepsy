@@ -5,4 +5,6 @@
     <string name="navigation_add_events_screen">Events</string>
     <string name="navigation_course_screen">Course</string>
     <string name="navigation_registration_screen">Registration</string>
+    <string name="navigation_authentication_screen">Authentication</string>
+    <string name="navigation_confirm_code_screen">Confirm</string>
 </resources>

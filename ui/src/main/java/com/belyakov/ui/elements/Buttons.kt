@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.belyakov.ui.ext.dpToSp
 import com.belyakov.ui.theme.ButtonGray
 import com.belyakov.ui.theme.PrimaryAccentColor
-import com.belyakov.ui.theme.fontFamily
+import com.belyakov.ui.theme.robotoBase
 
 typealias ButtonSize = Dp
 
@@ -53,7 +53,7 @@ fun LoginButton(
             Text(
                 text,
                 fontWeight = FontWeight.SemiBold,
-                fontFamily = fontFamily,
+                fontFamily = robotoBase,
                 fontStyle = FontStyle.Normal,
                 fontSize = dpToSp(12.dp),
                 letterSpacing = dpToSp(0.2.dp)

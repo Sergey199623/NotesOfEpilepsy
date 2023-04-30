@@ -48,8 +48,6 @@ dependencies {
     implementation project(":ui")
     implementation project(":navigation")
 
-//    implementation 'com.android.support:multidex:1.0.3'
-
     // AndroidX
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -79,7 +77,6 @@ dependencies {
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:31.5.0')
     implementation 'com.google.firebase:firebase-analytics-ktx:21.2.2'
-    implementation 'com.google.firebase:firebase-database-ktx:20.2.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

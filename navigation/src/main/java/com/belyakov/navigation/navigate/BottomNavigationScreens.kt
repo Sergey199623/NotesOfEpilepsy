@@ -23,6 +23,12 @@ sealed class BottomNavigationScreens(
         R.drawable.ic_calendar
     )
 
+    object ConfirmCodeScreen : BottomNavigationScreens(
+        "confirm_code_screen",
+        R.string.navigation_confirm_code_screen,
+        R.drawable.ic_capsule
+    )
+
     object CourseScreen : BottomNavigationScreens(
         "course_screen",
         R.string.navigation_course_screen,
@@ -32,7 +38,13 @@ sealed class BottomNavigationScreens(
     object RegistrationScreen : BottomNavigationScreens(
         "registration_screen",
         R.string.navigation_registration_screen,
-        R.drawable.ic_profile
+        R.drawable.ic_capsule
+    )
+
+    object AuthScreen : BottomNavigationScreens(
+        "authentication_screen",
+        R.string.navigation_authentication_screen,
+        R.drawable.ic_capsule
     )
 //
 //    object CodeScreen :

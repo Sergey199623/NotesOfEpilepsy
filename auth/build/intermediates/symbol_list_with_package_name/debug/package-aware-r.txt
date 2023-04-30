@@ -6,6 +6,7 @@ color primary_light_app_color
 color primary_text_color
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable rectangle_1
 mipmap ic_launcher
 mipmap ic_launcher_round
 string auth_back_to_registration
@@ -18,8 +19,13 @@ string auth_login_title
 string auth_privacy_policies
 string auth_registration_user_name
 string auth_repeat_send_code
+string auth_screen_btn_email
+string auth_screen_btn_phone
+string auth_screen_title
 string auth_subtitle_registration
 string auth_title_registration
+string confirm_code_screen_code
+string confirm_code_screen_title
 string registration_screen_btn_next
 string registration_screen_hint_age
 string registration_screen_hint_name
