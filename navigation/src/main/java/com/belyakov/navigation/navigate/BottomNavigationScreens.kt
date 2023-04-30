@@ -11,6 +11,9 @@ sealed class BottomNavigationScreens(
     object MainScreen :
         BottomNavigationScreens("main_screen", R.string.navigation_main_screen, R.drawable.ic_home)
 
+    object EventScreen :
+        BottomNavigationScreens("event_screen", R.string.navigation_main_screen, R.drawable.ic_home)
+
     object ProfileScreen : BottomNavigationScreens(
         "profile_screen",
         R.string.navigation_profile_screen,

@@ -19,6 +19,7 @@ import com.belyakov.auth.RegistrationScreen
 import com.belyakov.auth.presentation.SharedAuthViewModel
 import com.belyakov.navigation.navigate.BottomNavigationScreens
 import com.belyakov.notesforepilepsy.presentation.screens.AddEventScreen
+import com.belyakov.notesforepilepsy.presentation.screens.EventScreen
 import com.belyakov.notesforepilepsy.presentation.screens.MainScreen
 import com.belyakov.notesforepilepsy.presentation.screens.ProfileScreen
 import com.belyakov.notesforepilepsy.presentation.viewModel.SharedMainViewModel
@@ -46,7 +47,7 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = if (isHasAuth) BottomNavigationScreens.MainScreen.route else BottomNavigationScreens.AuthScreen.route
+                        startDestination = if (!isHasAuth) BottomNavigationScreens.MainScreen.route else BottomNavigationScreens.AuthScreen.route
                     ) {
                         composable(route = BottomNavigationScreens.RegistrationScreen.route) {
                             RegistrationScreen(
@@ -65,11 +66,17 @@ class MainActivity : ComponentActivity() {
                             ConfirmCodeScreen(
                                 navController = navController,
                                 viewModel = sharedAuthViewModel,
+                                onConfirmCode = {
+                                    navController.navigate(BottomNavigationScreens.MainScreen.route)
+
+                                }
                             )
                         }
                         composable(route = BottomNavigationScreens.MainScreen.route) {
                             MainScreen(
                                 navController = navController,
+                                onEventsClicked = { navController.navigate(BottomNavigationScreens.EventScreen.route) },
+                                onProfileClicked = { navController.navigate(BottomNavigationScreens.ProfileScreen.route) },
                                 onSosClicked = {
                                     // callEmergency()
                                 },
@@ -91,8 +98,16 @@ class MainActivity : ComponentActivity() {
                         composable(route = BottomNavigationScreens.AddEventScreen.route) { backStackEntry ->
                             AddEventScreen(
                                 sharedMainViewModel = sharedMainViewModel,
-                                onNotesSaved = { navController.navigate(BottomNavigationScreens.MainScreen.route) },
+                                onNotesSaved = { navController.navigate(BottomNavigationScreens.EventScreen.route) },
                                 onBackClicked = { navController.navigateUp() }
+                            )
+                        }
+                        composable(route = BottomNavigationScreens.EventScreen.route) { backStackEntry ->
+                            EventScreen(
+                                navController = navController,
+                                sharedMainViewModel = sharedMainViewModel,
+//                                onNotesSaved = { navController.navigate(BottomNavigationScreens.MainScreen.route) },
+//                                onAddEventClicked = { navController.navigateUp() }
                             )
                         }
                     }

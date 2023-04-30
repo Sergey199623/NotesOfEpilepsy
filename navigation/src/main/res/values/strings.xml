@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">navigation</string>
     <string name="navigation_main_screen">Main</string>
+    <string name="navigation_event_screen">Events</string>
     <string name="navigation_profile_screen">Profile</string>
-    <string name="navigation_add_events_screen">Events</string>
+    <string name="navigation_add_events_screen">Add Events</string>
     <string name="navigation_course_screen">Course</string>
     <string name="navigation_registration_screen">Registration</string>
     <string name="navigation_authentication_screen">Authentication</string>

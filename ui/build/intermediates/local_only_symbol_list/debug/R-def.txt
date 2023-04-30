@@ -13,6 +13,7 @@ drawable ic_sos
 drawable ic_sos_on_map
 drawable image_sos
 font montserrat_bold
+font montserrat_medium_bold
 font montserrat_regular
 font roboto_base
 string main_screen_title

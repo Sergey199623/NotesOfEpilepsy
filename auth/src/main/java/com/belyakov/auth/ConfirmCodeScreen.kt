@@ -1,7 +1,7 @@
 package com.belyakov.auth
 
+import android.app.Activity
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.foundation.relocation.bringIntoViewRequester
@@ -11,17 +11,14 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.onFocusEvent
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextRange
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -38,13 +35,19 @@ import kotlinx.coroutines.launch
 fun ConfirmCodeScreen(
     viewModel: SharedAuthViewModel,
     navController: NavHostController,
+    onConfirmCode: () -> Unit
 ) {
+    val isSuccessVerify by viewModel.isSuccessVerify.collectAsState()
+    val isSuccessConfirm by viewModel.isSuccessConfirm.collectAsState()
+
     val textFieldValueState = remember { mutableStateOf(TextFieldValue("")) }
     val bringIntoViewRequester = remember { BringIntoViewRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
     val coroutineScope = rememberCoroutineScope()
     var isVisible by remember { mutableStateOf(false) }
     val prefix = remember { "+7 " }
+    val context = LocalContext.current
+    val activity = context as Activity
 
     Column(
         modifier = Modifier
@@ -83,7 +86,7 @@ fun ConfirmCodeScreen(
             },
             leftError = "",
             rightError = "",
-            visualTransformation = PhoneNumberTransformer(format = "(xxx)-xxx-xx-xx"),
+            visualTransformation = PhoneNumberTransformer(format = "(XXX) XXX XX XX"),
             limit = 13,
             keyboardOptions = KeyboardOptions(
                 imeAction = ImeAction.Done,
@@ -93,16 +96,17 @@ fun ConfirmCodeScreen(
             keyboardActions = KeyboardActions(
                 onDone = {
                     keyboardController?.hide()
-                    isVisible = true
-//                    component.onNext()
+                    viewModel.submitRegistrationData(
+                        phoneNumber = "+7" + textFieldValueState.value.text,
+                        context = activity
+                    )
                 }
             )
         )
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        if (isVisible) {
-
+        if (isSuccessVerify) {
             Text(
                 text = stringResource(id = R.string.confirm_code_screen_code),
                 modifier = Modifier.padding(start = 16.dp),
@@ -132,11 +136,13 @@ fun ConfirmCodeScreen(
                 keyboardActions = KeyboardActions(
                     onDone = {
                         keyboardController?.hide()
-//                        isVisible = true
-//                    component.onNext()
                     }
                 )
             )
+
+            if (isSuccessConfirm) {
+                onConfirmCode()
+            }
         }
     }
 }

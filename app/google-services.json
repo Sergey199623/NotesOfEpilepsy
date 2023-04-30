@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "562567300756",
+    "firebase_url": "https://notesforepilepsy-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "notesforepilepsy",
     "storage_bucket": "notesforepilepsy.appspot.com"
   },

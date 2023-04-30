@@ -12,3 +12,7 @@ val robotoBase = FontFamily(
 val montserratBase = FontFamily(
     Font(R.font.montserrat_regular, FontWeight.Black),
 )
+
+val montserratMediumBold = FontFamily(
+    Font(R.font.montserrat_medium_bold, FontWeight.Black),
+)

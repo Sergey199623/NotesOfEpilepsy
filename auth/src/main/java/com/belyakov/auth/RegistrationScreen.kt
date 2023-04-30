@@ -73,7 +73,9 @@ fun RegistrationScreen(
             )
         }
         Button(
-            onClick = { viewModel.submitRegistrationData(registrationData, activity) },
+            onClick = {
+//                viewModel.submitRegistrationData(registrationData, activity)
+                      },
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter),

@@ -2,7 +2,13 @@
     <string name="app_name">Записки эпилептика</string>
     <string name="main_screen_empty_list">Записи отсутствуют</string>
     <string name="add_notes_screen_title">Создание события</string>
-    <string name="main_screen_title">Главный экран</string>
-    <string name="firebase_database_url">https://notesforepilepsy-default-rtdb.europe-west1.firebasedatabase.app/</string>
+    <string name="main_screen_title">Главная</string>
+<!--    <string name="firebase_database_url">https://notesforepilepsy-default-rtdb.europe-west1.firebasedatabase.app/</string>-->
     <string name="toast_call_permission">Разрешение на звонок не предоставлено</string>
+    <string name="navigation_calendar">Календарь</string>
+    <string name="navigation_capsule">Лекарства</string>
+    <string name="navigation_sos">SOS</string>
+    <string name="navigation_affect">Приступы</string>
+    <string name="navigation_emergency">Записаться к врачу</string>
+    <string name="navigation_apteks">Аптеки</string>
 </resources>
