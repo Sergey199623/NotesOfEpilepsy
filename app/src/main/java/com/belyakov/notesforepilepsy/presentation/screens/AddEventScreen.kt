@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.belyakov.notesforepilepsy.presentation.viewModel.SharedMainViewModel
 import com.belyakov.ui.elements.DefaultToolbar
-import com.belyakov.notesforepilepsy.utils.MeasureDefaultToolbarHeight
 
 @Composable
 fun AddEventScreen(
@@ -43,13 +42,13 @@ fun AddEventScreen(
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
-        MeasureDefaultToolbarHeight { toolbarHeight.value = it }
+//        MeasureDefaultToolbarHeight { toolbarHeight.value = it }
         Row(
             modifier = Modifier
                 .background(Color(android.graphics.Color.parseColor("#FF00BCD4")))
                 .align(Alignment.TopCenter),
         ) {
-            DefaultToolbar(onBackClosed = onBackClicked,)
+//            DefaultToolbar(onBackClosed = onBackClicked,)
         }
 
         Column(

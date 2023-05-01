@@ -52,7 +52,10 @@ fun EventScreen(
                 modifier = Modifier
                     .background(Color(android.graphics.Color.parseColor("#FF00BCD4")))
             ) {
-                DefaultToolbar()
+                DefaultToolbar(
+                    title = com.belyakov.navigation.R.string.navigation_event_screen,
+                    isNeedBackBtn = true
+                )
             }
         },
         bottomBar = {

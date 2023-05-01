@@ -29,18 +29,18 @@ fun showSystemUi(activity: Activity) {
     ).show(WindowInsetsCompat.Type.systemBars())
 }
 
-@Composable
-fun MeasureDefaultToolbarHeight(onToolbarHeightMeasured: (Int) -> Unit) {
-    Layout(
-        content = { DefaultToolbar() },
-        measurePolicy = { measurables, constraints ->
-            val placeable = measurables.first().measure(constraints)
-            layout(placeable.width, placeable.height) {
-                placeable.placeRelative(0, 0)
-            }
-        },
-        modifier = Modifier
-            .fillMaxWidth()
-            .onSizeChanged { onToolbarHeightMeasured(it.height) }
-    )
-}
+//@Composable
+//fun MeasureDefaultToolbarHeight(onToolbarHeightMeasured: (Int) -> Unit) {
+//    Layout(
+//        content = { DefaultToolbar() },
+//        measurePolicy = { measurables, constraints ->
+//            val placeable = measurables.first().measure(constraints)
+//            layout(placeable.width, placeable.height) {
+//                placeable.placeRelative(0, 0)
+//            }
+//        },
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .onSizeChanged { onToolbarHeightMeasured(it.height) }
+//    )
+//}
