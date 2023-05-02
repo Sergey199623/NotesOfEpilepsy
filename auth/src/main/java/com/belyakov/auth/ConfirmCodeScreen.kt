@@ -1,24 +1,35 @@
 package com.belyakov.auth
 
 import android.app.Activity
-import androidx.compose.foundation.ExperimentalFoundationApi
+import android.util.Log
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.foundation.relocation.bringIntoViewRequester
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -27,8 +38,6 @@ import com.belyakov.ui.elements.PhoneNumberTransformer
 import com.belyakov.ui.elements.TextEditorField
 import com.belyakov.ui.ext.clearFocusOnKeyboardDismiss
 import com.belyakov.ui.theme.montserratBase
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class)
 @Composable
@@ -39,6 +48,9 @@ fun ConfirmCodeScreen(
 ) {
     val isSuccessVerify by viewModel.isSuccessVerify.collectAsState()
     val isSuccessConfirm by viewModel.isSuccessConfirm.collectAsState()
+
+    var phoneNumber by remember { mutableStateOf("") }
+    var mobileNumber by rememberSaveable { mutableStateOf("") }
 
     val textFieldValueState = remember { mutableStateOf(TextFieldValue("")) }
     val bringIntoViewRequester = remember { BringIntoViewRequester() }
@@ -74,35 +86,38 @@ fun ConfirmCodeScreen(
 
         Spacer(modifier = Modifier.height(19.dp))
 
-        TextEditorField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .bringIntoViewRequester(bringIntoViewRequester)
-                .clearFocusOnKeyboardDismiss(),
-            value = textFieldValueState.value,
-            prefix = prefix,
-            onValueChange = { changedValue ->
-                textFieldValueState.value = changedValue
-            },
-            leftError = "",
-            rightError = "",
-            visualTransformation = PhoneNumberTransformer(format = "(XXX) XXX XX XX"),
-            limit = 13,
-            keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Done,
-                autoCorrect = false,
-                keyboardType = KeyboardType.Uri
-            ),
-            keyboardActions = KeyboardActions(
-                onDone = {
-                    keyboardController?.hide()
-                    viewModel.submitRegistrationData(
-                        phoneNumber = "+7" + textFieldValueState.value.text,
-                        context = activity
+        Column {
+            Row(modifier = Modifier.padding(all = 10.dp)) {
+                BasicTextField(
+                    value = mobileNumber,
+                    onValueChange = { mobileNumber = it },
+//                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+                    visualTransformation = { mobileNumberFilter(it) },
+                    maxLines = 1,
+                    keyboardOptions = KeyboardOptions(
+                        imeAction = ImeAction.Done,
+                        autoCorrect = false,
+                        keyboardType = KeyboardType.Uri
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onDone = {
+                            keyboardController?.hide()
+                            viewModel.submitRegistrationData(
+                                phoneNumber = mobileNumber,
+                                context = activity
+                            )
+                        }
                     )
-                }
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .height(1.dp)
+                    .padding(start = 10.dp)
+                    .fillMaxWidth()
+                    .background(Color.Gray)
             )
-        )
+        }
 
         Spacer(modifier = Modifier.height(24.dp))
 
@@ -145,4 +160,44 @@ fun ConfirmCodeScreen(
             }
         }
     }
+}
+
+const val mask = "+7 (хxx)-xxx-xx-хх"
+
+fun mobileNumberFilter(text: AnnotatedString): TransformedText {
+    // change the length
+    val trimmed =
+        if (text.text.length >= 13) text.text.substring(0..12) else text.text
+
+    val annotatedString = AnnotatedString.Builder().run {
+        for (i in trimmed.indices) {
+            append(trimmed[i])
+            if (i == 1 || i == 4 || i == 7 || i == 9) {
+                append(" ")
+            }
+        }
+        pushStyle(SpanStyle(color = Color.LightGray))
+        append(mask.takeLast(mask.length - length))
+        toAnnotatedString()
+    }
+
+    val phoneNumberOffsetTranslator = object : OffsetMapping {
+        override fun originalToTransformed(offset: Int): Int {
+            if (offset <= 1) return offset
+            if (offset <= 4) return offset + 1
+            if (offset <= 6) return offset + 2
+            if (offset <= 9) return offset + 3
+            return 12
+        }
+
+        override fun transformedToOriginal(offset: Int): Int {
+            if (offset <= 1) return offset
+            if (offset <= 4) return offset - 1
+            if (offset <= 6) return offset - 2
+            if (offset <= 9) return offset - 3
+            return 9
+        }
+    }
+
+    return TransformedText(annotatedString, phoneNumberOffsetTranslator)
 }

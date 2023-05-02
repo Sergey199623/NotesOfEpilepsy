@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = if (!isHasAuth) BottomNavigationScreens.MainScreen.route else BottomNavigationScreens.AuthScreen.route
+                        startDestination = if (isHasAuth) BottomNavigationScreens.MainScreen.route else BottomNavigationScreens.AuthScreen.route
                     ) {
                         composable(route = BottomNavigationScreens.RegistrationScreen.route) {
                             RegistrationScreen(
@@ -97,9 +97,9 @@ class MainActivity : ComponentActivity() {
                                 navController = navController,
                                 onEventsClicked = { navController.navigate(BottomNavigationScreens.EventScreen.route) },
                                 onProfileClicked = { navController.navigate(BottomNavigationScreens.ProfileScreen.route) },
-                                onSignUpForDoctor = { openUrlInBrowser("https://www.gosuslugi.ru/category") },
+                                onSignUpForDoctor = { openUrlInBrowser(GOSUSLUGI_URL) },
                                 onSosClicked = {
-                                     callEmergency()
+                                    callEmergency()
                                 },
                                 sharedMainViewModel = sharedMainViewModel
                             )
@@ -141,9 +141,17 @@ class MainActivity : ComponentActivity() {
 
         val dialIntent = Intent(Intent.ACTION_CALL, Uri.parse("tel:112"))
         // Проверяем, есть ли у приложения разрешение на звонок
-        if (ContextCompat.checkSelfPermission(this, CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                CALL_PHONE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             // Запрашиваем разрешение на звонок
-            ActivityCompat.requestPermissions(this, arrayOf(CALL_PHONE), REQUEST_CALL_PHONE_PERMISSION)
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(CALL_PHONE),
+                REQUEST_CALL_PHONE_PERMISSION
+            )
         } else {
             // Уже есть разрешение на звонок, выполняем звонок
             try {
@@ -176,7 +184,11 @@ class MainActivity : ComponentActivity() {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // разрешение получено, делаем звонок
                 } else {
-                    Toast.makeText(this, "Для совершения звонка нужно разрешение", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this,
+                        "Для совершения звонка нужно разрешение",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
@@ -184,5 +196,6 @@ class MainActivity : ComponentActivity() {
 
     private companion object {
         const val REQUEST_CALL_PHONE_PERMISSION = 1
+        const val GOSUSLUGI_URL = "https://www.gosuslugi.ru/category"
     }
 }

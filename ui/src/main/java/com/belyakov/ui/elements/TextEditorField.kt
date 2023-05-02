@@ -52,7 +52,7 @@ fun TextEditorField(
                     .height(64.dp)
             },
             roundedCornerShape = RoundedCornerShape(8.dp),
-            background = Color.White
+            background = Color.Gray
         ) {
             Column(
                 modifier = Modifier.padding(

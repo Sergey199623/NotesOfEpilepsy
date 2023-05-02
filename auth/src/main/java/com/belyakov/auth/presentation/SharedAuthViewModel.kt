@@ -93,6 +93,7 @@ class SharedAuthViewModel (
             .setCallbacks(callbacks)
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
+        _isSuccessVerifyPhoneNumber.value = true
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential, context: Activity) {
