@@ -1,10 +1,7 @@
 package com.belyakov.notesforepilepsy.presentation.screens
 
-import android.app.Activity
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
@@ -13,28 +10,25 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.belyakov.notesforepilepsy.presentation.viewModel.SharedMainViewModel
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.belyakov.notesforepilepsy.R
+import com.belyakov.notesforepilepsy.presentation.viewModel.ProfileViewModel
 import com.belyakov.ui.elements.DefaultToolbar
 
-@OptIn(ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun ProfileScreen(
-    sharedMainViewModel: SharedMainViewModel = viewModel(),
+    profileViewModel: ProfileViewModel = viewModel(),
     onDataSaved: () -> Unit,
     onBackClicked: () -> Unit,
 ) {
@@ -44,10 +38,7 @@ fun ProfileScreen(
     val age = remember { mutableStateOf(TextFieldValue("")) }
     val email = remember { mutableStateOf(TextFieldValue("")) }
 
-    val textFieldValueState = remember { mutableStateOf(TextFieldValue("")) }
-    val bringIntoViewRequester = remember { BringIntoViewRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
-    val context = LocalContext.current as Activity
 
     Column(
         modifier = Modifier
@@ -77,11 +68,10 @@ fun ProfileScreen(
             horizontalArrangement = Arrangement.Center
         ) {
             IconButton(
-                onClick = { /*TODO*/ },
+                onClick = { /*onChangePhoto()*/ },
                 modifier = Modifier
                     .height(210.dp)
                     .width(210.dp)
-//                    .align(CenterHorizontally),
             ) {
                 Icon(
                     painter = painterResource(id = com.belyakov.ui.R.drawable.image_user_no_photo),
@@ -272,5 +262,15 @@ fun ProfileScreen(
                     .background(Color.Gray)
             )
         }
+    }
+
+    fun saveInfo() {
+        profileViewModel.onClickInfoSaved(
+            firstName.value.text,
+            lastName.value.text,
+            middleName.value.text,
+            age.value.text,
+            email.value.text
+        )
     }
 }

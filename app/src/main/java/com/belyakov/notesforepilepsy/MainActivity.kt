@@ -109,7 +109,6 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = BottomNavigationScreens.ProfileScreen.route) { backStackEntry ->
                             ProfileScreen(
-                                sharedMainViewModel = sharedMainViewModel,
                                 onDataSaved = {
                                     // todo реализовать сохранение данных пользователя на удаленной БД
                                 },

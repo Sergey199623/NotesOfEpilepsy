@@ -31,8 +31,7 @@ fun DefaultToolbar(
             IconButton(
                 onClick = { onBackClicked() },
                 modifier = Modifier.align(Alignment.CenterStart)
-            )
-            {
+            ) {
                 Icon(
                     painter = painterResource(id = com.belyakov.ui.R.drawable.ic_arrow_back),
                     contentDescription = null,
@@ -53,8 +52,7 @@ fun DefaultToolbar(
             IconButton(
                 onClick = { onProfileClicked() },
                 modifier = Modifier.align(Alignment.CenterEnd)
-            )
-            {
+            ) {
                 Icon(
                     painter = painterResource(id = com.belyakov.ui.R.drawable.ic_user_profile_default),
                     contentDescription = null,
