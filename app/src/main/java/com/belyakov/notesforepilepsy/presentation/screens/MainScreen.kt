@@ -43,7 +43,8 @@ fun MainScreen(
             ) {
                 DefaultToolbar(
                     title = R.string.main_screen_title,
-                    isNeedBackBtn = false,
+                    isNeedShowBackBtn = false,
+                    isNeedShowProfileBtn = true,
                     onProfileClicked = { onProfileClicked() }
                 )
             }

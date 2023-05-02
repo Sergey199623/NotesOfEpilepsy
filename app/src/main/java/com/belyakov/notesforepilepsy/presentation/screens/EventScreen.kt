@@ -54,7 +54,8 @@ fun EventScreen(
             ) {
                 DefaultToolbar(
                     title = com.belyakov.navigation.R.string.navigation_event_screen,
-                    isNeedBackBtn = true
+                    isNeedShowBackBtn = true,
+                    isNeedShowProfileBtn = true
                 )
             }
         },

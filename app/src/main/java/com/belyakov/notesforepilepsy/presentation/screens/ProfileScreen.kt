@@ -1,113 +1,276 @@
 package com.belyakov.notesforepilepsy.presentation.screens
 
-import androidx.compose.foundation.Image
+import android.app.Activity
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.IconButton
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.foundation.relocation.BringIntoViewRequester
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.belyakov.notesforepilepsy.R
 import com.belyakov.notesforepilepsy.presentation.viewModel.SharedMainViewModel
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
+import com.belyakov.notesforepilepsy.R
+import com.belyakov.ui.elements.DefaultToolbar
 
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class)
 @Composable
 fun ProfileScreen(
     sharedMainViewModel: SharedMainViewModel = viewModel(),
     onDataSaved: () -> Unit,
     onBackClicked: () -> Unit,
-    onSosClicked: () -> Unit
 ) {
-    val firstName = remember { mutableStateOf("") }
-    val lastName = remember { mutableStateOf("") }
-    val middleName = remember { mutableStateOf("") }
-    val age = remember { mutableStateOf("") }
-    val weight = remember { mutableStateOf("") }
-    val bloodGroup = remember { mutableStateOf("") }
-    val medication = remember { mutableStateOf("") }
+    val firstName = remember { mutableStateOf(TextFieldValue("")) }
+    val lastName = remember { mutableStateOf(TextFieldValue("")) }
+    val middleName = remember { mutableStateOf(TextFieldValue("")) }
+    val age = remember { mutableStateOf(TextFieldValue("")) }
+    val email = remember { mutableStateOf(TextFieldValue("")) }
+
+    val textFieldValueState = remember { mutableStateOf(TextFieldValue("")) }
+    val bringIntoViewRequester = remember { BringIntoViewRequester() }
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val context = LocalContext.current as Activity
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(vertical = 32.dp)
     ) {
-        OutlinedTextField(
-            value = firstName.value,
-            onValueChange = { firstName.value = it },
-            label = { Text("First Name") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
-        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 13.dp)
 
-        OutlinedTextField(
-            value = lastName.value,
-            onValueChange = { lastName.value = it },
-            label = { Text("Last Name") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
-        )
+        ) {
+            DefaultToolbar(
+                title = R.string.profile_screen_title,
+                isNeedShowBackBtn = true,
+                isNeedShowProfileBtn = false,
+                onBackClicked = { onBackClicked() },
+            )
+        }
 
-        OutlinedTextField(
-            value = middleName.value,
-            onValueChange = { middleName.value = it },
-            label = { Text("Middle Name") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        OutlinedTextField(
-            value = age.value,
-            onValueChange = { age.value = it },
-            label = { Text("Age") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        OutlinedTextField(
-            value = weight.value,
-            onValueChange = { weight.value = it },
-            label = { Text("Weight") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        OutlinedTextField(
-            value = bloodGroup.value,
-            onValueChange = { bloodGroup.value = it },
-            label = { Text("Blood Group") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        OutlinedTextField(
-            value = medication.value,
-            onValueChange = { medication.value = it },
-            label = { Text("Medication") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
-        )
+        Spacer(modifier = Modifier.height(31.dp))
 
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 16.dp)
+                .padding(horizontal = 31.dp),
+            horizontalArrangement = Arrangement.Center
         ) {
             IconButton(
-                onClick = { onSosClicked() }
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .height(210.dp)
+                    .width(210.dp)
+//                    .align(CenterHorizontally),
             ) {
-                Image(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_add_notes),
-                    contentDescription = null,
-                    modifier = Modifier.size(64.dp)
+                Icon(
+                    painter = painterResource(id = com.belyakov.ui.R.drawable.image_user_no_photo),
+                    contentDescription = null
                 )
             }
+        }
+
+        Spacer(modifier = Modifier.height(36.dp))
+
+        Column {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 31.dp)
+            ) {
+                BasicTextField(
+                    value = firstName.value,
+                    onValueChange = { firstName.value = it },
+                    maxLines = 1,
+                    keyboardOptions = KeyboardOptions(
+                        imeAction = ImeAction.Done,
+                        autoCorrect = false,
+                        keyboardType = KeyboardType.Text
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onDone = { keyboardController?.hide() }
+                    )
+                )
+                if (firstName.value.text.isEmpty()) {
+                    Text(
+                        text = "Ваше имя",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = Color.LightGray
+                    )
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .height(1.dp)
+                    .fillMaxWidth()
+                    .padding(horizontal = 31.dp)
+                    .background(Color.Gray)
+            )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 31.dp)
+                    .padding(top = 21.dp)
+            ) {
+                BasicTextField(
+                    value = lastName.value,
+                    onValueChange = { lastName.value = it },
+                    maxLines = 1,
+                    keyboardOptions = KeyboardOptions(
+                        imeAction = ImeAction.Done,
+                        autoCorrect = false,
+                        keyboardType = KeyboardType.Text
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onDone = { keyboardController?.hide() }
+                    )
+                )
+                if (lastName.value.text.isEmpty()) {
+                    Text(
+                        text = "Фамилия",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = Color.LightGray
+                    )
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .height(1.dp)
+                    .fillMaxWidth()
+                    .padding(horizontal = 31.dp)
+                    .background(Color.Gray)
+            )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 31.dp)
+                    .padding(top = 21.dp)
+            ) {
+                BasicTextField(
+                    value = middleName.value,
+                    onValueChange = { middleName.value = it },
+                    maxLines = 1,
+                    keyboardOptions = KeyboardOptions(
+                        imeAction = ImeAction.Done,
+                        autoCorrect = false,
+                        keyboardType = KeyboardType.Text
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onDone = { keyboardController?.hide() }
+                    )
+                )
+                if (middleName.value.text.isEmpty()) {
+                    Text(
+                        text = "Отчество",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = Color.LightGray
+                    )
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .height(1.dp)
+                    .fillMaxWidth()
+                    .padding(horizontal = 31.dp)
+                    .background(Color.Gray)
+            )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 31.dp)
+                    .padding(top = 21.dp)
+            ) {
+                BasicTextField(
+                    value = age.value,
+                    onValueChange = { age.value = it },
+                    maxLines = 1,
+                    keyboardOptions = KeyboardOptions(
+                        imeAction = ImeAction.Done,
+                        autoCorrect = false,
+                        keyboardType = KeyboardType.Number
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onDone = { keyboardController?.hide() }
+                    )
+                )
+                if (age.value.text.isEmpty()) {
+                    Text(
+                        text = "Возраст",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = Color.LightGray
+                    )
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .height(1.dp)
+                    .padding(horizontal = 31.dp)
+                    .fillMaxWidth()
+                    .background(Color.Gray)
+            )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 31.dp)
+                    .padding(top = 21.dp)
+            ) {
+                BasicTextField(
+                    value = email.value,
+                    onValueChange = { email.value = it },
+                    maxLines = 1,
+                    keyboardOptions = KeyboardOptions(
+                        imeAction = ImeAction.Done,
+                        autoCorrect = false,
+                        keyboardType = KeyboardType.Email
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onDone = { keyboardController?.hide() }
+                    )
+                )
+                if (email.value.text.isEmpty()) {
+                    Text(
+                        text = "E-mail",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = Color.LightGray
+                    )
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .height(1.dp)
+                    .padding(horizontal = 31.dp)
+                    .fillMaxWidth()
+                    .background(Color.Gray)
+            )
         }
     }
 }

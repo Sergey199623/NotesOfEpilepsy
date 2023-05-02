@@ -3,6 +3,7 @@
     <string name="main_screen_empty_list">Записи отсутствуют</string>
     <string name="add_notes_screen_title">Создание события</string>
     <string name="main_screen_title">Главная</string>
+    <string name="profile_screen_title">Профиль</string>
 <!--    <string name="firebase_database_url">https://notesforepilepsy-default-rtdb.europe-west1.firebasedatabase.app/</string>-->
     <string name="toast_call_permission">Разрешение на звонок не предоставлено</string>
     <string name="navigation_calendar">Календарь</string>

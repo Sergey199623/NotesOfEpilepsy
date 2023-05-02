@@ -13,14 +13,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import com.belyakov.auth.presentation.SharedAuthViewModel
 import com.belyakov.ui.theme.montserratBase
 
 @Composable
 fun AuthScreen(
-    viewModel: SharedAuthViewModel,
-    navController: NavHostController,
     onPhoneNumberClicked: () -> Unit
 ) {
 

@@ -17,7 +17,8 @@ import com.belyakov.ui.theme.montserratMediumBold
 @Composable
 fun DefaultToolbar(
     title: Int,
-    isNeedBackBtn: Boolean,
+    isNeedShowBackBtn: Boolean,
+    isNeedShowProfileBtn: Boolean,
     onBackClicked: () -> Unit = { },
     onProfileClicked: () -> Unit = { },
 ) {
@@ -26,18 +27,18 @@ fun DefaultToolbar(
             .fillMaxWidth()
             .padding(horizontal = 16.dp),
     ) {
-        if (isNeedBackBtn) {
+        if (isNeedShowBackBtn) {
             IconButton(
                 onClick = { onBackClicked() },
                 modifier = Modifier.align(Alignment.CenterStart)
             )
             {
                 Icon(
-                    painter = painterResource(id = com.belyakov.navigation.R.drawable.ic_profile),
+                    painter = painterResource(id = com.belyakov.ui.R.drawable.ic_arrow_back),
                     contentDescription = null,
                     modifier = Modifier
-                        .height(25.dp)
-                        .width(25.dp),
+                        .height(30.dp)
+                        .width(30.dp),
                 )
             }
         }
@@ -48,18 +49,20 @@ fun DefaultToolbar(
             fontSize = 32.sp,
             fontFamily = montserratMediumBold,
         )
-        IconButton(
-            onClick = { onProfileClicked() },
-            modifier = Modifier.align(Alignment.CenterEnd)
-        )
-        {
-            Icon(
-                painter = painterResource(id = com.belyakov.navigation.R.drawable.ic_profile),
-                contentDescription = null,
-                modifier = Modifier
-                    .height(25.dp)
-                    .width(25.dp),
+        if (isNeedShowProfileBtn) {
+            IconButton(
+                onClick = { onProfileClicked() },
+                modifier = Modifier.align(Alignment.CenterEnd)
             )
+            {
+                Icon(
+                    painter = painterResource(id = com.belyakov.ui.R.drawable.ic_user_profile_default),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .height(30.dp)
+                        .width(30.dp),
+                )
+            }
         }
     }
 }

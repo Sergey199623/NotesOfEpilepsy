@@ -9,7 +9,9 @@ int drawable ic_back 0x0
 int drawable ic_cross_close 0x0
 int drawable ic_sos 0x0
 int drawable ic_sos_on_map 0x0
+int drawable ic_user_profile_default 0x0
 int drawable image_sos 0x0
+int drawable image_user_no_photo 0x0
 int font montserrat_bold 0x0
 int font montserrat_medium_bold 0x0
 int font montserrat_regular 0x0

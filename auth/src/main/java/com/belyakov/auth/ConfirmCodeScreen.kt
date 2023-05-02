@@ -1,34 +1,25 @@
 package com.belyakov.auth
 
 import android.app.Activity
-import android.util.Log
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.foundation.relocation.bringIntoViewRequester
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -49,15 +40,11 @@ fun ConfirmCodeScreen(
     val isSuccessVerify by viewModel.isSuccessVerify.collectAsState()
     val isSuccessConfirm by viewModel.isSuccessConfirm.collectAsState()
 
-    var phoneNumber by remember { mutableStateOf("") }
     var mobileNumber by rememberSaveable { mutableStateOf("") }
 
     val textFieldValueState = remember { mutableStateOf(TextFieldValue("")) }
     val bringIntoViewRequester = remember { BringIntoViewRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
-    val coroutineScope = rememberCoroutineScope()
-    var isVisible by remember { mutableStateOf(false) }
-    val prefix = remember { "+7 " }
     val context = LocalContext.current
     val activity = context as Activity
 
@@ -91,13 +78,12 @@ fun ConfirmCodeScreen(
                 BasicTextField(
                     value = mobileNumber,
                     onValueChange = { mobileNumber = it },
-//                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                     visualTransformation = { mobileNumberFilter(it) },
                     maxLines = 1,
                     keyboardOptions = KeyboardOptions(
                         imeAction = ImeAction.Done,
                         autoCorrect = false,
-                        keyboardType = KeyboardType.Uri
+                        keyboardType = KeyboardType.Phone
                     ),
                     keyboardActions = KeyboardActions(
                         onDone = {

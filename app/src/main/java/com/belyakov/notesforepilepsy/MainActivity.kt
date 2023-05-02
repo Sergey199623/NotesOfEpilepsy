@@ -29,6 +29,8 @@ import com.belyakov.notesforepilepsy.presentation.screens.ProfileScreen
 import com.belyakov.notesforepilepsy.presentation.viewModel.SharedMainViewModel
 import com.belyakov.notesforepilepsy.ui.theme.NotesForEpilepsyTheme
 import android.Manifest.permission.CALL_PHONE
+import android.graphics.Color
+import android.view.View
 
 class MainActivity : ComponentActivity() {
 
@@ -51,6 +53,9 @@ class MainActivity : ComponentActivity() {
             )
         }
 
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        window.statusBarColor = Color.TRANSPARENT
+
         setContent {
             val navController = rememberNavController()
             NotesForEpilepsyTheme {
@@ -63,7 +68,7 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = if (isHasAuth) BottomNavigationScreens.MainScreen.route else BottomNavigationScreens.AuthScreen.route
+                        startDestination = if (!isHasAuth) BottomNavigationScreens.MainScreen.route else BottomNavigationScreens.AuthScreen.route
                     ) {
                         composable(route = BottomNavigationScreens.RegistrationScreen.route) {
                             RegistrationScreen(
@@ -73,8 +78,6 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = BottomNavigationScreens.AuthScreen.route) {
                             AuthScreen(
-                                navController = navController,
-                                viewModel = sharedAuthViewModel,
                                 onPhoneNumberClicked = {
                                     navController.navigate(
                                         BottomNavigationScreens.ConfirmCodeScreen.route
@@ -111,9 +114,6 @@ class MainActivity : ComponentActivity() {
                                     // todo реализовать сохранение данных пользователя на удаленной БД
                                 },
                                 onBackClicked = { navController.navigateUp() },
-                                onSosClicked = {
-//                                    callEmergency()
-                                }
                             )
                         }
                         composable(route = BottomNavigationScreens.AddEventScreen.route) { backStackEntry ->
