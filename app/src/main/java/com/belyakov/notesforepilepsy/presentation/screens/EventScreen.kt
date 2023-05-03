@@ -19,13 +19,10 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.layout
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.belyakov.navigation.navigate.BottomNavigationScreens
-import com.belyakov.ui.theme.PrimaryBackgroundColor
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -58,9 +55,6 @@ fun EventScreen(
                     isNeedShowProfileBtn = true
                 )
             }
-        },
-        bottomBar = {
-            BottomNavigationBar(navController, bottomNavigationItems)
         },
     ) {
         Box(
@@ -99,38 +93,3 @@ fun EventScreen(
         }
     }
 }
-
-@Composable
-private fun BottomNavigationBar(
-    navController: NavHostController,
-    items: List<BottomNavigationScreens>
-) {
-    BottomNavigation(
-        backgroundColor = PrimaryBackgroundColor
-    ) {
-        val currentRoute = currentRoute(navController)
-        items.forEach { screen ->
-            BottomNavigationItem(
-                icon = { Icon(painterResource(id = screen.icon), contentDescription = null) },
-                label = { Text(stringResource(id = screen.resourceId)) },
-                selected = currentRoute == screen.route,
-                alwaysShowLabel = false, // This hides the title for the unselected items
-                onClick = {
-                    // This if check gives us a "singleTop" behavior where we do not create a
-                    // second instance of the composable if we are already on that destination
-                    if (currentRoute != screen.route) {
-                        navController.navigate(screen.route)
-                    }
-                }
-            )
-        }
-    }
-}
-
-@Composable
-private fun currentRoute(navController: NavHostController): String? {
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    return navBackStackEntry?.arguments?.getString(KEY_ROUTE)
-}
-
-private const val KEY_ROUTE = "route"

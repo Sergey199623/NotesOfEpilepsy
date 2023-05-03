@@ -22,15 +22,12 @@ import com.belyakov.auth.ConfirmCodeScreen
 import com.belyakov.auth.RegistrationScreen
 import com.belyakov.auth.presentation.SharedAuthViewModel
 import com.belyakov.navigation.navigate.BottomNavigationScreens
-import com.belyakov.notesforepilepsy.presentation.screens.AddEventScreen
-import com.belyakov.notesforepilepsy.presentation.screens.EventScreen
-import com.belyakov.notesforepilepsy.presentation.screens.MainScreen
-import com.belyakov.notesforepilepsy.presentation.screens.ProfileScreen
 import com.belyakov.notesforepilepsy.presentation.viewModel.SharedMainViewModel
 import com.belyakov.notesforepilepsy.ui.theme.NotesForEpilepsyTheme
 import android.Manifest.permission.CALL_PHONE
 import android.graphics.Color
 import android.view.View
+import com.belyakov.notesforepilepsy.presentation.screens.*
 
 class MainActivity : ComponentActivity() {
 
@@ -53,7 +50,8 @@ class MainActivity : ComponentActivity() {
             )
         }
 
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         window.statusBarColor = Color.TRANSPARENT
 
         setContent {
@@ -104,6 +102,11 @@ class MainActivity : ComponentActivity() {
                                 onSosClicked = {
                                     callEmergency()
                                 },
+                                onMedicinesClicked = {
+                                    navController.navigate(
+                                        BottomNavigationScreens.MedicinesScreen.route
+                                    )
+                                },
                                 sharedMainViewModel = sharedMainViewModel
                             )
                         }
@@ -128,6 +131,12 @@ class MainActivity : ComponentActivity() {
                                 sharedMainViewModel = sharedMainViewModel,
 //                                onNotesSaved = { navController.navigate(BottomNavigationScreens.MainScreen.route) },
 //                                onAddEventClicked = { navController.navigateUp() }
+                            )
+                        }
+                        composable(route = BottomNavigationScreens.MedicinesScreen.route) {
+                            MedicinesScreen(
+                                onBackClicked = { navController.navigateUp() },
+                                onProfileClicked = { navController.navigate(BottomNavigationScreens.ProfileScreen.route) },
                             )
                         }
                     }

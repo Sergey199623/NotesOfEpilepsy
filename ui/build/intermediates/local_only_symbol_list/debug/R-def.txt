@@ -5,6 +5,7 @@ color primary_accent_color
 color primary_dark_app_color
 color primary_light_app_color
 color primary_text_color
+drawable ic_add_medicines
 drawable ic_arrow_back
 drawable ic_arrow_forward
 drawable ic_back

@@ -23,6 +23,7 @@ fun MainScreen(
     onProfileClicked: () -> Unit,
     onSosClicked: () -> Unit,
     onSignUpForDoctor: () -> Unit,
+    onMedicinesClicked: () -> Unit,
     sharedMainViewModel: SharedMainViewModel
 ) {
     Box(
@@ -100,7 +101,7 @@ fun MainScreen(
                         .weight(0.5f)
                         .padding(end = 9.dp),
                     shape = RoundedCornerShape(20.dp),
-                    onClick = { /*TODO*/ }) {
+                    onClick = { onMedicinesClicked() }) {
                     Text(
                         text = stringResource(id = R.string.navigation_capsule),
                         fontFamily = montserratBase,

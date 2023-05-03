@@ -8,4 +8,5 @@
     <string name="navigation_registration_screen">Registration</string>
     <string name="navigation_authentication_screen">Authentication</string>
     <string name="navigation_confirm_code_screen">Confirm</string>
+    <string name="navigation_medicines_screen">Confirm</string>
 </resources>

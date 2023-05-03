@@ -5,11 +5,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ProfileUserInfo(
-    var name: String,
-    var lastName: String,
-    var middleName: String,
-    var age: String,
-    var email: String
+    val name: String,
+    val lastName: String,
+    val middleName: String,
+    val age: String,
+    val email: String
 ) : Parcelable {
-//    constructor(name: String) : this("", "", "", "", "")
+    constructor(name: String) : this("", "", "", "", "")
 }
