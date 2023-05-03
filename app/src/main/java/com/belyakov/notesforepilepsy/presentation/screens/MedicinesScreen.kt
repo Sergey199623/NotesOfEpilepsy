@@ -135,23 +135,23 @@ fun CollapsibleListItem(
                 )
 
                 Icon(
-                    painter = painterResource(R.drawable.ic_dropdown),
+                    painter = painterResource(com.belyakov.ui.R.drawable.ic_expanded),
                     contentDescription = null,
                     modifier = Modifier.rotate(if (expanded) 180f else 0f)
                 )
             }
 
-            if (expanded) {
-                if (isEditable) {
-                    MedicinesListItem(
-                        onStartDateChanged = onStartDateChanged,
-                        onDaysCountChanged = onDaysCountChanged,
-                        onConsumedCountChanged = onConsumedCountChanged
-                    )
-                } else {
-                    // Содержимое списка по умолчанию
-                }
-            }
+//            if (expanded) {
+//                if (isEditable) {
+//                    MedicinesListItem(
+//                        onStartDateChanged = onStartDateChanged,
+//                        onDaysCountChanged = onDaysCountChanged,
+//                        onConsumedCountChanged = onConsumedCountChanged
+//                    )
+//                } else {
+//                    // Содержимое списка по умолчанию
+//                }
+//            }
         }
     }
 }

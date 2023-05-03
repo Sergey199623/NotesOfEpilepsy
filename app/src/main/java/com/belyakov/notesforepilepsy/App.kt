@@ -13,7 +13,7 @@ class App : MultiDexApplication(), KoinComponent {
     override fun onCreate() {
         super.onCreate()
 
-        startDIifNeed(this)
+        startDIifNeed(this@App)
     }
 
     companion object {

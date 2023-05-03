@@ -26,7 +26,7 @@ import com.belyakov.navigation.navigate.BottomNavigationScreens
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun EventScreen(
+fun FitScreen(
     navController: NavHostController,
     sharedMainViewModel: SharedMainViewModel = viewModel()
 ) {

@@ -3,7 +3,7 @@ package com.belyakov.notesforepilepsy.presentation.viewModel
 import android.util.Log
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
-import com.belyakov.notesforepilepsy.data.Events
+import com.belyakov.notesforepilepsy.data.Fits
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -19,8 +19,8 @@ class SharedMainViewModel(
     private var database: FirebaseDatabase? = null
     private var notesReferences: DatabaseReference? = null
 
-    private val _data = MutableStateFlow(SnapshotStateList<Events>())
-    val data: StateFlow<SnapshotStateList<Events>> = _data
+    private val _data = MutableStateFlow(SnapshotStateList<Fits>())
+    val data: StateFlow<SnapshotStateList<Fits>> = _data
 
     init {
         database = FirebaseDatabase.getInstance(databaseUrl)
@@ -29,7 +29,7 @@ class SharedMainViewModel(
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (noteSnapshot in dataSnapshot.children) {
-                    val note = noteSnapshot.getValue(Events::class.java)
+                    val note = noteSnapshot.getValue(Fits::class.java)
                     note?.let { data.value.add(it) }
                 }
                 // здесь можно обновить список заметок в UI
@@ -43,7 +43,7 @@ class SharedMainViewModel(
 
     fun addNotes(title: String, description: String, date: String) {
         val id = notesReferences?.push()?.key ?: return // генерация ключа для заметки
-        val note = Events(
+        val note = Fits(
             title = title,
             description = description,
             dateOfCreate = date,

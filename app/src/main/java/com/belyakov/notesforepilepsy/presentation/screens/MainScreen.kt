@@ -10,21 +10,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
 import com.belyakov.notesforepilepsy.R
-import com.belyakov.notesforepilepsy.presentation.viewModel.SharedMainViewModel
 import com.belyakov.ui.elements.DefaultToolbar
 import com.belyakov.ui.theme.montserratBase
 
 @Composable
 fun MainScreen(
-    navController: NavHostController,
     onEventsClicked: () -> Unit,
     onProfileClicked: () -> Unit,
     onSosClicked: () -> Unit,
     onSignUpForDoctor: () -> Unit,
     onMedicinesClicked: () -> Unit,
-    sharedMainViewModel: SharedMainViewModel
+    onCalendarClicked: () -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -116,7 +113,7 @@ fun MainScreen(
                         .weight(0.5f)
                         .padding(start = 9.dp),
                     shape = RoundedCornerShape(20.dp),
-                    onClick = { /*TODO*/ }) {
+                    onClick = { onCalendarClicked() }) {
                     Text(
                         text = stringResource(id = R.string.navigation_calendar),
                         fontFamily = montserratBase,

@@ -47,4 +47,9 @@ sealed class BottomNavigationScreens(
         route = "medicines_screen",
         R.string.navigation_medicines_screen
     )
+
+    object CalendarScreen : BottomNavigationScreens(
+        route = "calendar_screen",
+        R.string.navigation_calendar_screen
+    )
 }

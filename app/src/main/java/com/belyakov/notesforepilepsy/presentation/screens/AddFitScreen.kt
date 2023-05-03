@@ -16,10 +16,9 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.belyakov.notesforepilepsy.presentation.viewModel.SharedMainViewModel
-import com.belyakov.ui.elements.DefaultToolbar
 
 @Composable
-fun AddEventScreen(
+fun AddFitScreen(
     sharedMainViewModel: SharedMainViewModel = viewModel(),
     onNotesSaved: () -> Unit,
     onBackClicked: () -> Unit

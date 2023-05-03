@@ -13,4 +13,5 @@
     <string name="navigation_emergency">Записаться к врачу</string>
     <string name="navigation_apteks">Аптеки</string>
     <string name="medicines_screen_title">Лекарства</string>
+    <string name="notification_screen_title">Напоминания</string>
 </resources>

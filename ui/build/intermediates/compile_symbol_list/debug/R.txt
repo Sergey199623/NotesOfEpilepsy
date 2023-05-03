@@ -8,6 +8,7 @@ int drawable ic_arrow_back 0x0
 int drawable ic_arrow_forward 0x0
 int drawable ic_back 0x0
 int drawable ic_cross_close 0x0
+int drawable ic_expanded 0x0
 int drawable ic_sos 0x0
 int drawable ic_sos_on_map 0x0
 int drawable ic_user_profile_default 0x0

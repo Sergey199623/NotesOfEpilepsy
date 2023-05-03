@@ -28,6 +28,8 @@ import android.Manifest.permission.CALL_PHONE
 import android.graphics.Color
 import android.view.View
 import com.belyakov.notesforepilepsy.presentation.screens.*
+import com.belyakov.notesforepilepsy.presentation.viewModel.NotificationViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -37,6 +39,8 @@ class MainActivity : ComponentActivity() {
 
         val sharedMainViewModel = SharedMainViewModel(getString(R.string.firebase_database_url))
         val sharedAuthViewModel = SharedAuthViewModel(getString(R.string.firebase_database_url))
+        val notificationViewModel: NotificationViewModel by viewModel()
+
         val isHasAuth = false
 
         // запрос разрешения на звонки
@@ -95,7 +99,6 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = BottomNavigationScreens.MainScreen.route) {
                             MainScreen(
-                                navController = navController,
                                 onEventsClicked = { navController.navigate(BottomNavigationScreens.EventScreen.route) },
                                 onProfileClicked = { navController.navigate(BottomNavigationScreens.ProfileScreen.route) },
                                 onSignUpForDoctor = { openUrlInBrowser(GOSUSLUGI_URL) },
@@ -107,7 +110,11 @@ class MainActivity : ComponentActivity() {
                                         BottomNavigationScreens.MedicinesScreen.route
                                     )
                                 },
-                                sharedMainViewModel = sharedMainViewModel
+                                onCalendarClicked = {
+                                    navController.navigate(
+                                        BottomNavigationScreens.CalendarScreen.route
+                                    )
+                                },
                             )
                         }
                         composable(route = BottomNavigationScreens.ProfileScreen.route) { backStackEntry ->
@@ -119,14 +126,14 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(route = BottomNavigationScreens.AddEventScreen.route) { backStackEntry ->
-                            AddEventScreen(
+                            AddFitScreen(
                                 sharedMainViewModel = sharedMainViewModel,
                                 onNotesSaved = { navController.navigate(BottomNavigationScreens.EventScreen.route) },
                                 onBackClicked = { navController.navigateUp() }
                             )
                         }
                         composable(route = BottomNavigationScreens.EventScreen.route) { backStackEntry ->
-                            EventScreen(
+                            FitScreen(
                                 navController = navController,
                                 sharedMainViewModel = sharedMainViewModel,
 //                                onNotesSaved = { navController.navigate(BottomNavigationScreens.MainScreen.route) },
@@ -134,7 +141,14 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(route = BottomNavigationScreens.MedicinesScreen.route) {
-                            MedicinesScreen(
+//                            MedicinesScreen(
+//                                onBackClicked = { navController.navigateUp() },
+//                                onProfileClicked = { navController.navigate(BottomNavigationScreens.ProfileScreen.route) },
+//                            )
+                        }
+                        composable(route = BottomNavigationScreens.CalendarScreen.route) {
+                            NotificationScreen(
+                                viewModel = notificationViewModel,
                                 onBackClicked = { navController.navigateUp() },
                                 onProfileClicked = { navController.navigate(BottomNavigationScreens.ProfileScreen.route) },
                             )
