@@ -10,9 +10,9 @@ import org.koin.dsl.module
 
 object MainModules {
 
-    fun create() = module {
+    fun create(databaseUrl: String) = module {
         viewModel { SharedMainViewModel(get()) }
-        viewModel { ProfileViewModel(get()) }
+        viewModel { ProfileViewModel(databaseUrl) }
         viewModel { NotificationViewModel(get()) }
 
         single<ReminderRepository> { ReminderRepositoryImpl(get()) }

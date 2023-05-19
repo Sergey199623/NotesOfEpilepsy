@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.belyakov.notesforepilepsy.R
 import com.belyakov.notesforepilepsy.presentation.viewModel.ProfileViewModel
 import com.belyakov.ui.elements.DefaultToolbar
+import org.koin.core.parameter.parametersOf
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable

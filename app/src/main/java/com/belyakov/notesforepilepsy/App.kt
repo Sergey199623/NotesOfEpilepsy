@@ -25,7 +25,7 @@ class App : MultiDexApplication(), KoinComponent {
                 androidContext(context)
                 modules(
                     listOf(
-                        MainModules.create(),
+                        MainModules.create(context.getString(R.string.firebase_database_url)),
                         module {
                             FirebaseApp.initializeApp(context)
                         }

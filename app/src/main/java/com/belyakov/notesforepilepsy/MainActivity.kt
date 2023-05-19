@@ -29,6 +29,7 @@ import android.graphics.Color
 import android.view.View
 import com.belyakov.notesforepilepsy.presentation.screens.*
 import com.belyakov.notesforepilepsy.presentation.viewModel.NotificationViewModel
+import com.belyakov.notesforepilepsy.presentation.viewModel.ProfileViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
@@ -40,6 +41,7 @@ class MainActivity : ComponentActivity() {
         val sharedMainViewModel = SharedMainViewModel(getString(R.string.firebase_database_url))
         val sharedAuthViewModel = SharedAuthViewModel(getString(R.string.firebase_database_url))
         val notificationViewModel: NotificationViewModel by viewModel()
+        val profileViewModel: ProfileViewModel by viewModel()
 
         val isHasAuth = false
 
@@ -119,6 +121,7 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = BottomNavigationScreens.ProfileScreen.route) { backStackEntry ->
                             ProfileScreen(
+                                profileViewModel = profileViewModel,
                                 onDataSaved = {
                                     // todo реализовать сохранение данных пользователя на удаленной БД
                                 },
